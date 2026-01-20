@@ -62,9 +62,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -119.5
-offset_top = -51.0
+offset_top = -4.0
 offset_right = 119.5
-offset_bottom = 48.0
+offset_bottom = 95.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 6
@@ -97,6 +97,21 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_15cg4")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ty7cv")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_h2xoo")
 text = "Exit"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -182.5
+offset_top = 69.0
+offset_right = 182.5
+offset_bottom = 153.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 61
+text = "Game Name"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_startbtn_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_exitbtn_pressed"]
