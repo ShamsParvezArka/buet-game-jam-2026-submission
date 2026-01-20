@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="BUET game jam 2026 submission"
-run/main_scene="uid://dl2f7h76w60tg"
+run/main_scene="uid://dymt2rn5onkfp"
 config/features=PackedStringArray("4.5", "Forward Plus")
 
 [autoload]
