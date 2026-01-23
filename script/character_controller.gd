@@ -1,8 +1,8 @@
 class_name CharacterController extends CharacterBody2D
 
+@export var state_machine: StateMachine
 @export var initial_state: State
 @export var flipbook: AnimatedSprite2D
-@export var state_machine: StateMachine
 
 var direction_horizontal := 0.0
 var direction_vertical := 0.0

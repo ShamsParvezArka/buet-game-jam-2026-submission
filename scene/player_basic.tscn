@@ -180,7 +180,7 @@ region = Rect2(96, 0, 16, 16)
 atlas = ExtResource("5_ujlph")
 region = Rect2(112, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_mo30s"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_d38go"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -346,23 +346,20 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8jxoh"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ad7i5"]
 radius = 2.0
 height = 6.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xt50q"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_od1ww"]
 radius = 3.0
 height = 8.0
 
-[node name="PlayerBasic" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "initial_state", "flipbook")]
+[node name="PlayerBasic" type="CharacterBody2D" node_paths=PackedStringArray("initial_state", "flipbook", "state_machine")]
 script = ExtResource("1_hyh25")
-state_machine = NodePath("StateMachine")
 initial_state = NodePath("StateMachine/Idle")
 flipbook = NodePath("Flipbook")
-move_speed_horizontal = null
-move_speed_vertical = null
-jump_force = null
-gravity = null
+state_machine = NodePath("StateMachine")
+metadata/_custom_type_script = "uid://d2kjmtspxbl7j"
 
 [node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("2_dmlxr")
@@ -403,20 +400,18 @@ script = ExtResource("8_pjtj2")
 metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Flipbook" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_mo30s")
+sprite_frames = SubResource("SpriteFrames_d38go")
 animation = &"idle"
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
-shape = SubResource("CapsuleShape2D_8jxoh")
+shape = SubResource("CapsuleShape2D_ad7i5")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(0, 1)
 
 [node name="Collider" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CapsuleShape2D_xt50q")
+shape = SubResource("CapsuleShape2D_od1ww")
 
 [connection signal="timeout" from="StateMachine/Jump/Timer" to="StateMachine/Jump" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]
-[connection signal="area_entered" from="Area2D" to="StateMachine/Climb" method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="Area2D" to="StateMachine/Climb" method="_on_area_2d_area_exited"]

@@ -145,10 +145,6 @@ position = Vector2(155, 66)
 
 [node name="PlayerBasic" parent="." instance=ExtResource("2_nvmt1")]
 position = Vector2(83, 71)
-move_speed_horizontal = null
-move_speed_vertical = null
-jump_force = null
-gravity = null
 
 [node name="CameraRig" type="Camera2D" parent="."]
 position = Vector2(107, 60)
