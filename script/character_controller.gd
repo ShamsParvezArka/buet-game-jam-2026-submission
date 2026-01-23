@@ -1,20 +1,14 @@
-extends CharacterBody2D
+class_name CharacterController extends CharacterBody2D
 
-@export var state_machine: StateMachine
 @export var initial_state: State
 @export var flipbook: AnimatedSprite2D
-
-@export var move_speed_horizontal := 30
-@export var move_speed_vertical := 20
-@export var jump_force := -30
-@export var gravity := 90
+@export var state_machine: StateMachine
 
 var direction_horizontal := 0.0
 var direction_vertical := 0.0
 
 
 func _ready() -> void:
-	GlobalState.anime_sword_obtained = true
 	GlobalState.player_basic_apply_gravity = true
 	state_machine.init(initial_state)
 
