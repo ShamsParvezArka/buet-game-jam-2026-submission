@@ -188,7 +188,7 @@ one_shot = true
 [node name="Flipbook" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rmfn0")
 animation = &"attack"
-frame_progress = 0.58669007
+frame_progress = 0.81162626
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 4)

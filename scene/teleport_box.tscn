@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqh7fv5koddnt"]
+[gd_scene load_steps=4 format=3 uid="uid://bqh7fv5koddnt"]
 
 [ext_resource type="Script" uid="uid://c7mqdh6f3c4td" path="res://script/props/teleport_box.gd" id="1_cxsen"]
 [ext_resource type="Texture2D" uid="uid://bbq81j1w0xgwj" path="res://asset/props/box.png" id="2_muvrm"]
@@ -6,11 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kn6ur"]
 size = Vector2(6, 5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxsen"]
-size = Vector2(14, 5)
-
-[node name="TeleportBox" type="RigidBody2D"]
-collision_layer = 0
+[node name="TeleportBox" type="CharacterBody2D" groups=["teleport_box"]]
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_cxsen")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -19,11 +17,3 @@ texture = ExtResource("2_muvrm")
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_kn6ur")
-
-[node name="InteractionArea" type="Area2D" parent="." groups=["teleport_box"]]
-collision_layer = 4
-collision_mask = 4
-
-[node name="GrabArea" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_cxsen")
