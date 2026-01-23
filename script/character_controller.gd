@@ -14,9 +14,8 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if GlobalState.current_selected_player == self:
-		direction_horizontal = Input.get_axis("move_left", "move_right")
-		direction_vertical = Input.get_axis("move_up", "move_down")
+	direction_horizontal = Input.get_axis("move_left", "move_right")
+	direction_vertical = Input.get_axis("move_up", "move_down")
 		
 
 func _physics_process(delta: float) -> void:
