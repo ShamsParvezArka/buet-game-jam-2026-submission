@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=4 uid="uid://dl2f7h76w60tg"]
+[gd_scene load_steps=12 format=4 uid="uid://dl2f7h76w60tg"]
 
 [ext_resource type="Texture2D" uid="uid://dwod412cnxdjd" path="res://asset/environment.png" id="1_8jxoh"]
+[ext_resource type="PackedScene" uid="uid://bqh7fv5koddnt" path="res://scene/teleport_box.tscn" id="2_mqdaa"]
 [ext_resource type="PackedScene" uid="uid://hveqhu5colj6" path="res://scene/player_basic.tscn" id="2_nvmt1"]
 [ext_resource type="PackedScene" uid="uid://kawqca265cno" path="res://scene/player_wizard.tscn" id="3_mqdaa"]
 [ext_resource type="Script" uid="uid://c5weuruku80cb" path="res://script/advance_camera_rig.gd" id="4_won01"]
@@ -138,11 +139,14 @@ position = Vector2(72, 51)
 tile_map_data = PackedByteArray("AAD9//7/AgACAAAAAAD+//7/AgACAAAAAAAAAP7/AgACAAAAAAABAP7/AgAFAAIAAAD8//7/AgAEAAIAAAD+////AgADAAEAAAD9////AgAEAAQAAAD+/wAAAgAEAAIAAAD///7/AgAAAAMAAAD/////AgAAAAMAAAD//wAAAgAAAAMAAAD//wEAAgAAAAMAAAD//wIAAgAAAAMAAAD+/wMAAgABAAAAAAD//wMAAgACAAAAAAAAAAMAAgADAAAAAAD+/wQAAgADAAAAAAD9/wQAAgADAAEAAAABAAMAAgADAAAAAAAAAAQAAgABAAIAAAD//wQAAgAFAAQAAAD9/wMAAgABAAQAAAD8/wUAAgACAAAAAAD9/wUAAgABAAAAAAD9/wYAAgABAAMAAAABAAQAAgACAAIAAAD+/wUAAgAEAAEAAAACAAMAAgAAAAEAAAADAAMAAgABAAEAAAAEAAMAAgABAAEAAAAFAAMAAgABAAEAAAAGAAMAAgABAAEAAAAHAAMAAgABAAEAAAAIAAMAAgACAAEAAAAKAAMAAgADAAAAAAAKAAQAAgAFAAEAAAALAAMAAgADAAAAAAALAAQAAgADAAEAAAALAAUAAgABAAMAAAAMAAMAAgAAAAMAAAAMAAQAAgAAAAMAAAAMAAUAAgAAAAMAAAAMAAYAAgAAAAMAAAAMAAsAAgADAAEAAAANAAsAAgACAAAAAAANAAwAAgACAAIAAAAOAAsAAgABAAQAAFAJAAMAAgABAAAAAAAJAAQAAgAEAAEAAAAKAAUAAgACAAMAAAALAAYAAgACAAMAAAALAAsAAgAEAAIAAAAMAAcAAgAAAAMAAAAMAAgAAgAAAAMAAAAMAAkAAgAAAAMAAAAMAAoAAgAAAAMAAAAMAAwAAgAEAAQAAAADAAsAAgACAAEAAAAEAAsAAgADAAAAAAAFAAsAAgACAAAAAAAGAAsAAgAEAAAAAAAGAAwAAgAEAAIAAAD//wsAAgABAAEAAAD+/wsAAgAAAAEAAAAFAAwAAgABAAQAADD9/wsAAgADAAAAAAD9/wwAAgADAAEAAAD8/wwAAgADAAAAAAD8/wsAAgAAAAQAAAD8/w0AAgADAAQAADA=")
 tile_set = SubResource("TileSet_won01")
 
+[node name="TeleportBox" parent="." instance=ExtResource("2_mqdaa")]
+position = Vector2(90, 69)
+
 [node name="PlayerWizard" parent="." instance=ExtResource("3_mqdaa")]
-position = Vector2(134, 64)
+position = Vector2(152, 67)
 
 [node name="PlayerBasic" parent="." instance=ExtResource("2_nvmt1")]
-position = Vector2(87, 66)
+position = Vector2(123, 69)
 
 [node name="CameraRig" type="Camera2D" parent="."]
 position = Vector2(107, 60)

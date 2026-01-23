@@ -1,5 +1,6 @@
 extends State
 
+
 func enter() -> void:
 	if GlobalState.anime_sword_obtained:
 		player.flipbook.play("sword_idle")

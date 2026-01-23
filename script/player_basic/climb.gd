@@ -22,7 +22,6 @@ func update(delta: float) -> void:
 	
 
 func _on_interaction_area_area_entered(area: Area2D) -> void:
-	print("[entered]: climbing area")
 	GlobalState.can_climb = true if area.is_in_group("climbing_area") else false
 
 
