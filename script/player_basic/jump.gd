@@ -11,9 +11,10 @@ func enter() -> void:
 
 func update(delta: float) -> void:
 	state_machine.update_facing_direction(player.direction_horizontal)
-	
 	player.velocity.x = player.direction_horizontal * player.move_speed_horizontal
-			
+	
+	if Input.is_action_pressed("attack"):
+		state_machine.change_state(state_machine.get_node("Attack"))
 
 func _on_timer_timeout() -> void:
 	if player.is_on_floor():
