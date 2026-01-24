@@ -1,8 +1,8 @@
-[gd_scene load_steps=60 format=3 uid="uid://hveqhu5colj6"]
+[gd_scene load_steps=61 format=3 uid="uid://hveqhu5colj6"]
 
 [ext_resource type="Script" uid="uid://dfb0xqvguw6kp" path="res://script/player_basic/player_basic.gd" id="1_hyh25"]
 [ext_resource type="Texture2D" uid="uid://cevreuepibf4l" path="res://asset/player_basic/idle.png" id="2_8urdy"]
-[ext_resource type="Script" uid="uid://c550tnck2brbh" path="res://script/state_machine.gd" id="2_dmlxr"]
+[ext_resource type="Script" uid="uid://c3ft62tv51ny5" path="res://script/player_basic/state_machine.gd" id="2_pjtj2"]
 [ext_resource type="Texture2D" uid="uid://dtfloiwumwcnn" path="res://asset/player_basic/climb.png" id="2_ujlph"]
 [ext_resource type="Texture2D" uid="uid://crj03wrdpdusi" path="res://asset/player_basic/sword_attack.png" id="3_dfcsx"]
 [ext_resource type="Script" uid="uid://dymlr7xdsuv4i" path="res://script/player_basic/idle.gd" id="3_todec"]
@@ -350,6 +350,9 @@ animations = [{
 radius = 2.0
 height = 6.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pjtj2"]
+size = Vector2(5, 9.5)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_od1ww"]
 radius = 3.0
 height = 8.0
@@ -364,8 +367,9 @@ flipbook = NodePath("Flipbook")
 metadata/_custom_type_script = "uid://d2kjmtspxbl7j"
 
 [node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("2_dmlxr")
+script = ExtResource("2_pjtj2")
 player = NodePath("..")
+metadata/_custom_type_script = "uid://c550tnck2brbh"
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("3_todec")
@@ -403,11 +407,20 @@ metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Flipbook" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_d38go")
-animation = &"idle"
+animation = &"sword_attack"
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_ad7i5")
+
+[node name="HitArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="HitCollider" type="CollisionShape2D" parent="HitArea"]
+position = Vector2(6, -1)
+shape = SubResource("RectangleShape2D_pjtj2")
+disabled = true
 
 [node name="InteractionArea" type="Area2D" parent="."]
 position = Vector2(0, 1)
@@ -419,5 +432,6 @@ shape = SubResource("CapsuleShape2D_od1ww")
 
 [connection signal="timeout" from="StateMachine/Jump/Timer" to="StateMachine/Jump" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]
+[connection signal="body_entered" from="HitArea" to="StateMachine/Attack" method="_on_hit_area_body_entered"]
 [connection signal="area_entered" from="InteractionArea" to="StateMachine/Climb" method="_on_interaction_area_area_entered"]
 [connection signal="area_exited" from="InteractionArea" to="StateMachine/Climb" method="_on_interaction_area_area_exited"]
