@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk68a4eth0elr"]
+
+[ext_resource type="Script" uid="uid://c3i16k3a7bvxt" path="res://script/particle/water_drop.gd" id="1_hhcy8"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hhcy8"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+sub_emitter_mode = 2
+sub_emitter_amount_at_end = 1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8y2ut"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 98, 0)
+
+[node name="WaterDrop" type="Node2D"]
+script = ExtResource("1_hhcy8")
+
+[node name="Water" type="GPUParticles2D" parent="."]
+modulate = Color(0.26666668, 0.27450982, 1, 1)
+amount = 1
+sub_emitter = NodePath("../Splash")
+lifetime = 0.89
+speed_scale = 0.7
+process_material = SubResource("ParticleProcessMaterial_hhcy8")
+
+[node name="Splash" type="GPUParticles2D" parent="."]
+modulate = Color(0.26666668, 0.27450982, 1, 1)
+position = Vector2(0, 33)
+amount = 1
+lifetime = 0.4
+speed_scale = 0.7
+process_material = SubResource("ParticleProcessMaterial_8y2ut")
