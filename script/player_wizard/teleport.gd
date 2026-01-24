@@ -7,6 +7,7 @@ var super_magic_value := -1.0
 func enter() -> void:
 	if object == null:
 		state_machine.change_state(state_machine.previous_state)
+		return
 	
 
 func update(delta: float) -> void:
@@ -21,8 +22,10 @@ func update(delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("pushable"):
 		object = body
+		player.teleport_visual = true
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("pushable"):
 		object = null
+		player.teleport_visual = false

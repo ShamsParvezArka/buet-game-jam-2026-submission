@@ -1,0 +1,43 @@
+extends Node2D
+
+@onready var player: CharacterBody2D = $".."
+@onready var collider: CollisionShape2D = $"../Area2D/Collider"
+
+@export var teleport_radius: float
+@export var color := Color("ea4a6e32")
+@export var thickness := 0.2
+@export var grow_speed := 4.0
+
+
+var current_radius := 0.0
+var target_radius := 0.0
+
+
+func _ready() -> void:
+	target_radius = collider.shape.radius
+	current_radius = 0.0
+
+
+func _process(delta: float) -> void:
+	if !player.teleport_visual:
+		if current_radius > 0:
+			current_radius = lerp(current_radius, 0.0, grow_speed * delta)
+			queue_redraw()
+		return
+	
+	current_radius = lerp(current_radius, target_radius, grow_speed * delta)
+	queue_redraw()
+	
+
+func _draw() -> void:
+	if current_radius < 6.0:
+		return
+		
+	draw_arc(
+		Vector2.ZERO, 
+		current_radius, 
+		0.0, 
+		TAU, 
+		64,
+		color, thickness
+	)
