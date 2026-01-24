@@ -1,12 +1,11 @@
 extends State
 
-var can_teleport := false
 var object: CharacterBody2D
 var super_magic_value := -1.0
 
 
 func enter() -> void:
-	if !can_teleport:
+	if object == null:
 		state_machine.change_state(state_machine.previous_state)
 	
 
@@ -22,8 +21,8 @@ func update(delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("pushable"):
 		object = body
-		can_teleport = true
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	can_teleport = false
+	if body.is_in_group("pushable"):
+		object = null

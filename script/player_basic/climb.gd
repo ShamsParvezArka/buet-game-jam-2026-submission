@@ -1,15 +1,20 @@
 extends State
 
+var can_climb := false
 
 func enter() -> void:
-	if GlobalState.can_climb:
-		GlobalState.player_basic_apply_gravity = false
-		player.flipbook.play("climb")
-	else:
+	if !can_climb:
 		state_machine.change_state(state_machine.previous_state)
+		return
+	
+	GlobalState.player_basic_apply_gravity = false
+	player.flipbook.play("climb")
 	
 
 func update(delta: float) -> void:
+	if !can_climb:
+		state_machine.change_state(state_machine.get_node("Idle"))
+		
 	if player.direction_vertical != 0:
 		player.velocity.y = player.direction_vertical * player.move_speed_vertical
 		player.flipbook.play("climb")
@@ -21,11 +26,15 @@ func update(delta: float) -> void:
 		state_machine.change_state(state_machine.get_node("Idle"))
 	
 
+func exit() -> void:
+	GlobalState.player_basic_apply_gravity = true
+	
+
 func _on_interaction_area_area_entered(area: Area2D) -> void:
-	GlobalState.can_climb = true if area.is_in_group("climbing_area") else false
+	if area.is_in_group("climbing_area"):
+		can_climb = true
 
 
 func _on_interaction_area_area_exited(area: Area2D) -> void:
-	GlobalState.can_climb = false
-	GlobalState.player_basic_apply_gravity = true
-	state_machine.change_state(state_machine.get_node("Idle"))
+	if area.is_in_group("climbing_area"):
+		can_climb = false
