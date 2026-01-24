@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://fdtsmxmtd4yu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_whbp6"]
+size = Vector2(6, 31.522339)
+
+[node name="LadderDetector" type="Area2D" groups=["climbing_area"]]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_whbp6")

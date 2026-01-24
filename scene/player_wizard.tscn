@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://kawqca265cno"]
+[gd_scene load_steps=33 format=3 uid="uid://kawqca265cno"]
 
 [ext_resource type="Script" uid="uid://b8nkknlg26ijw" path="res://script/player_wizard/player_wizard.gd" id="1_4sk2y"]
 [ext_resource type="Texture2D" uid="uid://da1bfxkgys2fj" path="res://asset/player_wizard/attack.png" id="1_7x5vd"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://btcejt7ojog3c" path="res://script/player_wizard/run.gd" id="4_rmfn0"]
 [ext_resource type="Script" uid="uid://djjfaqswsvmfk" path="res://script/player_wizard/attack.gd" id="5_0c07p"]
 [ext_resource type="Script" uid="uid://b3ukspv0vtae1" path="res://script/player_wizard/teleport.gd" id="6_sp1i1"]
+[ext_resource type="Script" uid="uid://d1b65c7i0ltip" path="res://script/player_wizard/pickup.gd" id="7_htsr6"]
+[ext_resource type="Script" uid="uid://c8dccqdaqb82r" path="res://script/player_wizard/teleport_visual.gd" id="11_wbuuc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pppx4"]
 atlas = ExtResource("1_7x5vd")
@@ -102,7 +104,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_82r40")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 7.0
 }, {
@@ -152,7 +154,11 @@ radius = 2.0
 height = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0c07p"]
-radius = 46.043457
+radius = 45.01111
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wbuuc"]
+radius = 4.0
+height = 12.0
 
 [node name="PlayerWizard" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "initial_state", "flipbook") groups=["player"]]
 collision_layer = 2
@@ -188,6 +194,10 @@ one_shot = true
 script = ExtResource("6_sp1i1")
 metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
+[node name="PickUp" type="Node" parent="StateMachine"]
+script = ExtResource("7_htsr6")
+metadata/_custom_type_script = "uid://drn4nb81k2l2b"
+
 [node name="Flipbook" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rmfn0")
 animation = &"attack"
@@ -202,9 +212,23 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="Collider" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-2, 3)
+position = Vector2(-1.815, 3)
 shape = SubResource("CircleShape2D_0c07p")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+position = Vector2(0, 1)
+collision_layer = 4
+collision_mask = 4
+
+[node name="Collider" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(-2, 3)
+shape = SubResource("CapsuleShape2D_wbuuc")
+
+[node name="TeleportVisual" type="Node2D" parent="."]
+script = ExtResource("11_wbuuc")
 
 [connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="StateMachine/Teleport" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="StateMachine/Teleport" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="InteractionArea" to="StateMachine/PickUp" method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="StateMachine/PickUp" method="_on_interaction_area_body_exited"]

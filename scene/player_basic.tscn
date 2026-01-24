@@ -437,7 +437,7 @@ shape = SubResource("CapsuleShape2D_od1ww")
 [connection signal="timeout" from="StateMachine/Jump/Timer" to="StateMachine/Jump" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]
 [connection signal="body_entered" from="HitArea" to="StateMachine/Attack" method="_on_hit_area_body_entered"]
-[connection signal="body_exited" from="HitArea" to="StateMachine/PickUp" method="_on_hit_area_body_exited"]
 [connection signal="area_entered" from="InteractionArea" to="StateMachine/Climb" method="_on_interaction_area_area_entered"]
 [connection signal="area_exited" from="InteractionArea" to="StateMachine/Climb" method="_on_interaction_area_area_exited"]
 [connection signal="body_entered" from="InteractionArea" to="StateMachine/PickUp" method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="StateMachine/PickUp" method="_on_interaction_area_body_exited"]
