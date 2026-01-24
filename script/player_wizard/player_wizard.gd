@@ -5,6 +5,8 @@ extends CharacterController
 @export var jump_force := -30
 @export var gravity := 90
 
+var teleport_visual := false
+
 
 func _physics_process(delta: float) -> void:
 	state_machine.update(delta)
