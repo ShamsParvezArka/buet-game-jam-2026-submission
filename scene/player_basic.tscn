@@ -411,7 +411,7 @@ metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Flipbook" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_d38go")
-animation = &"sword_attack"
+animation = &"idle"
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
