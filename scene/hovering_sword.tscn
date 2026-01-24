@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://etr28kadskst"]
+
+[ext_resource type="Texture2D" uid="uid://bttrnsu3bwia5" path="res://asset/props/sword.png" id="1_3vx1k"]
+[ext_resource type="Script" uid="uid://tqolgfks52hr" path="res://script/props/hovering_sword.gd" id="1_kwvlb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kwvlb"]
+radius = 6.0827627
+
+[node name="HoveringSword" type="StaticBody2D" groups=["collectable"]]
+collision_layer = 4
+script = ExtResource("1_kwvlb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.3962634
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("1_3vx1k")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kwvlb")

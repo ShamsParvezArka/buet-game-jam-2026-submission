@@ -18,3 +18,5 @@ func update(delta: float) -> void:
 			state_machine.change_state(state_machine.get_node("Jump"))
 		elif Input.is_action_pressed("attack"):
 			state_machine.change_state(state_machine.get_node("Attack"))
+		elif Input.is_action_pressed("pick_up"):
+			state_machine.change_state(state_machine.get_node("PickUp"))
