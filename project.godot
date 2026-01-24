@@ -30,6 +30,7 @@ climbing_area=""
 teleport_box=""
 pushable=""
 collectable=""
+Player=""
 
 [input]
 
