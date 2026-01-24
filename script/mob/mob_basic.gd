@@ -26,10 +26,16 @@ func _ready() -> void:
 	right_boundary = self.position + Vector2(10,0)
 
 func _physics_process(delta: float) -> void:
+	state_machine.update(delta)
 	move(delta)
 	change_direction()
 	lookForPlayer()
+	
 
+func _process(_delta: float) -> void:
+	direction_horizontal = sign(direction.x)
+	direction_vertical = sign(direction.y)
+	
 func lookForPlayer():
 	if ray_cast.is_colliding():
 		var collider = ray_cast.get_collider()
@@ -67,13 +73,12 @@ func change_direction()-> void:
 			else:
 				flipbook.flip_h	= true
 				ray_cast.target_position = Vector2(-50,0)
+		
 	elif current_state == State.FOUND: # found the player
 		direction = (player.position - self.position).normalized()
 		
 		direction = sign(direction)
 		if direction.x == 1:
-			#right direction
-			#print("chasing in right")
 			flipbook.flip_h = false
 			ray_cast.target_position = Vector2(50,0)
 		else:

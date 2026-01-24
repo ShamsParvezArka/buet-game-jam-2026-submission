@@ -1,14 +1,15 @@
-[gd_scene load_steps=19 format=4 uid="uid://dl2f7h76w60tg"]
+[gd_scene load_steps=20 format=4 uid="uid://dl2f7h76w60tg"]
 
 [ext_resource type="Texture2D" uid="uid://dwod412cnxdjd" path="res://asset/environment.png" id="1_8jxoh"]
 [ext_resource type="Texture2D" uid="uid://cdxpoo7lmcvax" path="res://asset/environment2.png" id="2_mo30s"]
 [ext_resource type="PackedScene" uid="uid://hveqhu5colj6" path="res://scene/player_basic.tscn" id="2_nvmt1"]
-[ext_resource type="PackedScene" uid="uid://vqo8flk2iu5c" path="res://scene/fire_fly.tscn" id="2_otirw"]
+[ext_resource type="PackedScene" path="res://scene/fire_fly.tscn" id="2_otirw"]
 [ext_resource type="PackedScene" uid="uid://kawqca265cno" path="res://scene/player_wizard.tscn" id="3_mqdaa"]
 [ext_resource type="Script" uid="uid://c5weuruku80cb" path="res://script/advance_camera_rig.gd" id="4_won01"]
 [ext_resource type="PackedScene" uid="uid://cqomx2alnw0gs" path="res://scene/push_box.tscn" id="5_mqdaa"]
 [ext_resource type="PackedScene" uid="uid://etr28kadskst" path="res://scene/hovering_sword.tscn" id="7_6axd3"]
-[ext_resource type="PackedScene" uid="uid://bk68a4eth0elr" path="res://scene/water_drop.tscn" id="7_whbp6"]
+[ext_resource type="PackedScene" path="res://scene/water_drop.tscn" id="7_whbp6"]
+[ext_resource type="PackedScene" uid="uid://c52mgjdsmi12l" path="res://scene/mob.tscn" id="10_qi44v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8jxoh"]
 texture = ExtResource("1_8jxoh")
@@ -342,3 +343,7 @@ position = Vector2(270, 705)
 
 [node name="HoveringSword" parent="." instance=ExtResource("7_6axd3")]
 position = Vector2(221, 741)
+
+[node name="mob" parent="." node_paths=PackedStringArray("player") instance=ExtResource("10_qi44v")]
+position = Vector2(368, 781)
+player = NodePath("../PlayerBasic")
