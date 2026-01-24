@@ -154,7 +154,7 @@ height = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_0c07p"]
 radius = 46.043457
 
-[node name="PlayerWizard" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "initial_state", "flipbook") groups=["Player"]]
+[node name="PlayerWizard" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "initial_state", "flipbook") groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_4sk2y")
 state_machine = NodePath("StateMachine")

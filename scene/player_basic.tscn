@@ -358,7 +358,7 @@ size = Vector2(5, 9.5)
 radius = 3.0
 height = 8.0
 
-[node name="PlayerBasic" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "initial_state", "flipbook") groups=["Player"]]
+[node name="PlayerBasic" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "initial_state", "flipbook") groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_hyh25")
 state_machine = NodePath("StateMachine")
