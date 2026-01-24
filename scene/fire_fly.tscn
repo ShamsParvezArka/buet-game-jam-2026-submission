@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://vqo8flk2iu5c"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1skk0"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 5, 1)
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = 0.99999774
+scale_min = 0.5
+scale_max = 0.5
+turbulence_enabled = true
+turbulence_noise_speed_random = 0.6
+
+[node name="FireFly" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+amount = 11
+lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_1skk0")
