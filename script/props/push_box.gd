@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var friction := 23
+@export var friction := 27
 @export var knockback_strength := 30.0
 @export var knockback_up := 30.0
 @export var gravity := 90.0
