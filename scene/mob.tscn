@@ -54,8 +54,8 @@ atlas = ExtResource("6_iycmn")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2u5lf"]
-atlas = ExtResource("6_fmerv")
-region = Rect2(20, 0, 20, 16)
+atlas = ExtResource("7_iycmn")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e612c"]
 atlas = ExtResource("7_iycmn")
@@ -171,7 +171,7 @@ metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Timer" type="Timer" parent="StateMachine/Attack"]
 process_callback = 0
-wait_time = 0.8
+wait_time = 0.658
 one_shot = true
 
 [node name="KnockBack" type="Node" parent="StateMachine"]

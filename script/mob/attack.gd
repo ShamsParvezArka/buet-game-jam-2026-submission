@@ -13,9 +13,9 @@ func enter() -> void:
 	
 
 func update(delta: float) -> void:
-	if player.player_has_hit == true:
+	if player.is_hurt == true:
 		state_machine.change_state(state_machine.get_node("KnockBack"))
-		player.player_has_hit = false
+		player.is_hurt = false
 
 
 func _on_timer_timeout() -> void:

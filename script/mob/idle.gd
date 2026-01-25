@@ -8,13 +8,8 @@ func enter() -> void:
 	
 	
 func update(delta: float) -> void:
-	if player.target == null:
-		return
-		
-	#var current_distance = abs(player.position.x - player.target.position.x)
-	#print(current_distance)
-	if player.player_has_hit:
-		state_machine.change_state(state_machine.get_node("KnockBack"))
-	else:
+	if player.target:
 		state_machine.change_state(state_machine.get_node("Chase"))
+	elif player.is_hurt:
+		state_machine.change_state(state_machine.get_node("KnockBack"))
 		

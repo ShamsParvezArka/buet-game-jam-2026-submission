@@ -270,7 +270,7 @@ position = Vector2(221, 741)
 position = Vector2(382, 239)
 
 [node name="PlayerBasic" parent="." instance=ExtResource("2_nvmt1")]
-position = Vector2(217, 254)
+position = Vector2(283, 252)
 
 [node name="CameraRig" type="Camera2D" parent="."]
 position = Vector2(161, 274)
@@ -278,4 +278,4 @@ zoom = Vector2(4, 4)
 script = ExtResource("4_won01")
 
 [node name="mob" parent="." instance=ExtResource("11_xftar")]
-position = Vector2(265, 254)
+position = Vector2(243, 253)

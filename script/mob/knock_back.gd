@@ -1,7 +1,7 @@
 extends State
 
-@export var friction := 27
-@export var knockback_strength := 30.0
+@export var friction := 22
+@export var knockback_strength := 38.0
 @export var knockback_up := 30.0
 
 
@@ -21,4 +21,4 @@ func update(delta: float) -> void:
 
 	if player.is_on_floor():
 		state_machine.change_state(state_machine.get_node("Idle"))
-		player.player_has_hit = false
+		player.is_hurt = false

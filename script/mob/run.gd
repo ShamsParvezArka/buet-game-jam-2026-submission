@@ -3,22 +3,27 @@ extends State
 
 func enter() -> void:
 	print("chase state")
-	player.flipbook.play("run")
-
-
-func update(delta: float) -> void:
 	if player.target == null:
 		state_machine.change_state(state_machine.get_node("Idle"))
 		return
+	player.flipbook.play("run")
 	
-	state_machine.update_facing_direction(player.direction_horizontal)
-	var current_distance = abs(player.position.x - player.target.position.x)
 
-	if current_distance <= player.target_distance:
-		state_machine.change_state(state_machine.get_node("Attack"))
+
+func update(delta: float) -> void:
+	if !player.is_on_floor():
 		return
-	
-	player.position.x += (player.target.position.x - player.position.x) / player.move_speed_inverse_horizontal
-	
+	if player.target == null:
+		state_machine.change_state(state_machine.get_node("Idle"))
+		return 
+			
+	state_machine.update_facing_direction(player.direction_horizontal)
 
+	var d = player.global_position - player.target.global_position
+	if d.length() > player.target_distance:
+		player.velocity.x = sign(-d.normalized().x) * player.move_speed_horizontal
+	else:
+		player.velocity = Vector2.ZERO
+		state_machine.change_state(state_machine.get_node("Attack"))	
+	
 		
