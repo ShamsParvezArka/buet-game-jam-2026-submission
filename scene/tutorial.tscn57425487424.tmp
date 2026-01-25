@@ -216,10 +216,7 @@ tile_set = SubResource("TileSet_won01")
 [node name="Level0" type="Node" parent="OverWorld"]
 
 [node name="PushBox" parent="OverWorld/Level0" instance=ExtResource("5_mqdaa")]
-position = Vector2(397, 214)
-
-[node name="Box3" parent="OverWorld/Level0" instance=ExtResource("5_mqdaa")]
-position = Vector2(382, 248)
+position = Vector2(295, 261)
 
 [node name="WaterDrop" parent="OverWorld/Level0" instance=ExtResource("7_whbp6")]
 position = Vector2(277, 226)
@@ -259,6 +256,9 @@ position = Vector2(325, 783)
 [node name="Box2" parent="OverWorld/Level1" instance=ExtResource("5_mqdaa")]
 position = Vector2(264, 781)
 
+[node name="Box3" parent="OverWorld/Level1" instance=ExtResource("5_mqdaa")]
+position = Vector2(397, 216)
+
 [node name="WaterDrop" parent="OverWorld/Level1" instance=ExtResource("7_whbp6")]
 position = Vector2(270, 705)
 
@@ -266,10 +266,10 @@ position = Vector2(270, 705)
 position = Vector2(221, 741)
 
 [node name="PlayerWizard" parent="." instance=ExtResource("3_mqdaa")]
-position = Vector2(315, 264)
+position = Vector2(359, 251)
 
 [node name="PlayerBasic" parent="." instance=ExtResource("2_nvmt1")]
-position = Vector2(163, 294)
+position = Vector2(404.85535, 211.44444)
 
 [node name="CameraRig" type="Camera2D" parent="."]
 position = Vector2(161, 274)

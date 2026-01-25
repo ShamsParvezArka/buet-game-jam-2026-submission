@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://c52mgjdsmi12l"]
+[gd_scene load_steps=18 format=3 uid="uid://cqh7lpyho8r07"]
 
 [ext_resource type="Script" uid="uid://by58i2brgvy8l" path="res://script/mob/mob_basic.gd" id="1_25hoh"]
 [ext_resource type="Script" uid="uid://c550tnck2brbh" path="res://script/state_machine.gd" id="2_wts8j"]
 [ext_resource type="Script" uid="uid://6utyo4mghfcd" path="res://script/mob/idle.gd" id="3_wts8j"]
 [ext_resource type="Script" uid="uid://doh0rfootilgg" path="res://script/mob/run.gd" id="4_25hoh"]
 [ext_resource type="Texture2D" uid="uid://cv6p34xscrqpp" path="res://asset/mob/lizard_idle.png" id="4_wts8j"]
+[ext_resource type="Script" uid="uid://drn4nb81k2l2b" path="res://script/state.gd" id="5_iycmn"]
 [ext_resource type="Texture2D" uid="uid://d07lleqwtl557" path="res://asset/mob/lizard_run.png" id="6_bt0d5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_25hoh"]
@@ -98,6 +99,14 @@ metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource("4_25hoh")
+metadata/_custom_type_script = "uid://drn4nb81k2l2b"
+
+[node name="LockIn" type="Node" parent="StateMachine"]
+script = ExtResource("5_iycmn")
+metadata/_custom_type_script = "uid://drn4nb81k2l2b"
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("5_iycmn")
 metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Collider" type="CollisionShape2D" parent="."]

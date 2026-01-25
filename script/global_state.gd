@@ -1,7 +1,6 @@
 extends Node2D
 
-enum FacingDirection 
-{ 
+enum FacingDirection { 
 	LEFT = -1, 
 	RIGHT = 1 
 }

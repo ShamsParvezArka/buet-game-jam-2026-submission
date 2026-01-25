@@ -6,6 +6,9 @@ extends CharacterController
 @export var gravity := 90
 
 var teleport_visual := false
+var teleport_object_container: Array[CharacterBody2D]
+var teleport_object_current_index := -1
+var magic_color := Color(1.5, 1.5, 1.5)
 
 
 func _physics_process(delta: float) -> void:

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var ray_cast_2d: RayCast2D = $RayCast2D
+
 @export var friction := 27
 @export var knockback_strength := 30.0
 @export var knockback_up := 30.0
@@ -8,6 +10,12 @@ extends CharacterBody2D
 var is_being_pushed := false
 var hit := false
 var hit_direction := GlobalState.FacingDirection.RIGHT
+
+
+func get_distance_from_ground() -> float:
+	if ray_cast_2d.is_colliding():
+		return global_position.y - ray_cast_2d.get_collision_point().y
+	return INF
 
 
 func _physics_process(delta: float) -> void:
