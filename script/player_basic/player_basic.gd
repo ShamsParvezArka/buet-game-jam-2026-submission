@@ -7,6 +7,7 @@ extends CharacterController
 @export var jump_force := -38
 @export var push_force := 15
 @export var gravity := 90
+@export var health := 100
 
 
 func _physics_process(delta: float) -> void:

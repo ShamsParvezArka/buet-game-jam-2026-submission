@@ -10,7 +10,9 @@ func enter() -> void:
 
 func update(delta: float) -> void:
 	state_machine.update_facing_direction(player.direction_horizontal)
-	
+	if player.health <= 0:
+		print("player_death")
+		state_machine.change_state(state_machine.get_node("Death"))
 	if player.direction_horizontal == 0:
 		state_machine.change_state(state_machine.get_node("Idle"))
 	elif !player.is_on_floor():

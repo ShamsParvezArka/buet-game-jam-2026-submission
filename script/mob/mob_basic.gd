@@ -3,10 +3,12 @@ extends CharacterController
 @export var move_speed_horizontal := 30
 @export var move_speed_vertical := 0
 @export var gravity := 90
+@export var health:= 100
 
 var target: CharacterBody2D = null
 var target_distance := 9.0
 var is_hurt := false
+var is_hit := false
 var hit_direction := GlobalState.FacingDirection.LEFT
 
 

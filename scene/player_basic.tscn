@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://hveqhu5colj6"]
+[gd_scene load_steps=63 format=3 uid="uid://hveqhu5colj6"]
 
 [ext_resource type="Script" uid="uid://dfb0xqvguw6kp" path="res://script/player_basic/player_basic.gd" id="1_hyh25"]
 [ext_resource type="Texture2D" uid="uid://cevreuepibf4l" path="res://asset/player_basic/idle.png" id="2_8urdy"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://djkjgq8pjf47j" path="res://script/player_basic/climb.gd" id="7_7lci2"]
 [ext_resource type="Script" uid="uid://bnyeiw3kp4x03" path="res://script/player_basic/mid_air.gd" id="8_pjtj2"]
 [ext_resource type="Script" uid="uid://bldjwxyqjaq3b" path="res://script/player_basic/pick_up.gd" id="9_d38go"]
+[ext_resource type="Script" uid="uid://6vf24csffoox" path="res://script/player_basic/death.gd" id="10_ad7i5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5p62h"]
 atlas = ExtResource("2_ujlph")
@@ -409,6 +410,13 @@ metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 script = ExtResource("9_d38go")
 metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource("10_ad7i5")
+metadata/_custom_type_script = "uid://drn4nb81k2l2b"
+
+[node name="Timer" type="Timer" parent="StateMachine/Death"]
+wait_time = 2.0
+
 [node name="Flipbook" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_d38go")
 animation = &"idle"
@@ -436,6 +444,7 @@ shape = SubResource("CapsuleShape2D_od1ww")
 
 [connection signal="timeout" from="StateMachine/Jump/Timer" to="StateMachine/Jump" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Death/Timer" to="StateMachine/Death" method="_on_timer_timeout"]
 [connection signal="body_entered" from="HitArea" to="StateMachine/Attack" method="_on_hit_area_body_entered"]
 [connection signal="area_entered" from="InteractionArea" to="StateMachine/Climb" method="_on_interaction_area_area_entered"]
 [connection signal="area_exited" from="InteractionArea" to="StateMachine/Climb" method="_on_interaction_area_area_exited"]

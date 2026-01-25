@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cqh7lpyho8r07"]
+[gd_scene load_steps=27 format=3 uid="uid://cqh7lpyho8r07"]
 
 [ext_resource type="Script" uid="uid://by58i2brgvy8l" path="res://script/mob/mob_basic.gd" id="1_25hoh"]
 [ext_resource type="Script" uid="uid://d0d1bob2yrhif" path="res://script/mob/state_machine.gd" id="2_e612c"]
@@ -8,18 +8,11 @@
 [ext_resource type="Script" uid="uid://d1jw40h324y25" path="res://script/mob/knock_back.gd" id="6_e612c"]
 [ext_resource type="Texture2D" uid="uid://6jj1x2e7guvj" path="res://asset/mob/moosyman_attack.png" id="6_fmerv"]
 [ext_resource type="Texture2D" uid="uid://de4p6tgtn7phw" path="res://asset/mob/mooseman_idle.png" id="6_iycmn"]
+[ext_resource type="Script" uid="uid://dc3s05wt63m4f" path="res://script/mob/death.gd" id="7_emakc"]
 [ext_resource type="Texture2D" uid="uid://coli02hf0br0w" path="res://asset/mob/mooseman_run.png" id="7_iycmn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e612c"]
 size = Vector2(5.5, 9)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8hjou"]
-atlas = ExtResource("6_fmerv")
-region = Rect2(0, 0, 20, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_66t78"]
-atlas = ExtResource("6_fmerv")
-region = Rect2(20, 0, 20, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_akspq"]
 atlas = ExtResource("6_fmerv")
@@ -77,10 +70,7 @@ region = Rect2(48, 0, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8hjou")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_66t78")
+"texture": SubResource("AtlasTexture_akspq")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_akspq")
@@ -174,8 +164,14 @@ process_callback = 0
 wait_time = 0.658
 one_shot = true
 
+[node name="DamageTimer" type="Timer" parent="StateMachine/Attack"]
+
 [node name="KnockBack" type="Node" parent="StateMachine"]
 script = ExtResource("6_e612c")
+metadata/_custom_type_script = "uid://drn4nb81k2l2b"
+
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource("7_emakc")
 metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Collider" type="CollisionShape2D" parent="."]
@@ -185,7 +181,7 @@ shape = SubResource("RectangleShape2D_e612c")
 [node name="Flipbook" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, 0)
 sprite_frames = SubResource("SpriteFrames_e612c")
-animation = &"knock_back"
+animation = &"attack"
 
 [node name="DetectionArea" type="Area2D" parent="." groups=["mob"]]
 collision_layer = 8
