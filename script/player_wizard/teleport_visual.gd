@@ -5,7 +5,7 @@ extends Node2D
 
 @export var teleport_radius: float
 @export var color := Color("ea4a6e32")
-@export var thickness := 0.2
+@export var thickness := 0.3
 @export var grow_speed := 4.0
 
 var current_radius := 0.0

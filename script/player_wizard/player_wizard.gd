@@ -8,7 +8,7 @@ extends CharacterController
 var teleport_visual := false
 var teleport_object_container: Array[CharacterBody2D]
 var teleport_object_current_index := -1
-var magic_color := Color(1.5, 1.5, 1.5)
+var magic_color := Color(1.8, 1.8, 1.8, 0.588)
 
 
 func _physics_process(delta: float) -> void:
