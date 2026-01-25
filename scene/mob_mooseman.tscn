@@ -173,7 +173,7 @@ metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Timer" type="Timer" parent="StateMachine/Attack"]
 process_callback = 0
-wait_time = 0.658
+wait_time = 0.64
 one_shot = true
 
 [node name="KnockBack" type="Node" parent="StateMachine"]
@@ -191,6 +191,7 @@ shape = SubResource("RectangleShape2D_e612c")
 sprite_frames = SubResource("SpriteFrames_e612c")
 animation = &"death"
 frame_progress = 0.33403355
+flip_h = true
 
 [node name="DetectionArea" type="Area2D" parent="." groups=["mob"]]
 collision_layer = 8

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dvyel64o3s4au"]
+[gd_scene load_steps=19 format=4 uid="uid://dvyel64o3s4au"]
 
 [ext_resource type="Texture2D" uid="uid://dwod412cnxdjd" path="res://asset/environment.png" id="1_8jxoh"]
 [ext_resource type="Texture2D" uid="uid://cdxpoo7lmcvax" path="res://asset/environment2.png" id="2_mo30s"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bk68a4eth0elr" path="res://scene/water_drop.tscn" id="7_whbp6"]
 [ext_resource type="PackedScene" uid="uid://b6f0fptjm0x54" path="res://scene/wind_ghust.tscn" id="8_6iio1"]
 [ext_resource type="PackedScene" uid="uid://cqh7lpyho8r07" path="res://scene/mob_mooseman.tscn" id="11_xftar"]
+[ext_resource type="PackedScene" uid="uid://btdemg6hbst6d" path="res://scene/mob_lizard.tscn" id="13_l02f5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8jxoh"]
 texture = ExtResource("1_8jxoh")
@@ -347,4 +348,7 @@ zoom = Vector2(4, 4)
 script = ExtResource("4_won01")
 
 [node name="MobMosseman" parent="." instance=ExtResource("11_xftar")]
-position = Vector2(241, 253)
+position = Vector2(869, 527)
+
+[node name="MobLizard" parent="." instance=ExtResource("13_l02f5")]
+position = Vector2(1073, 539)

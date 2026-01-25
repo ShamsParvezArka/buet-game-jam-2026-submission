@@ -17,12 +17,10 @@ func enter() -> void:
 func update(delta: float) -> void:
 	if player.health <= 0:
 		state_machine.change_state(state_machine.get_node("Death"))
-	if player.is_hurt == true and player.health > 0:
+	elif player.is_hurt == true and player.health > 0:
 		state_machine.change_state(state_machine.get_node("KnockBack"))
 		player.is_hurt = false
 		player.is_hit = false
-	elif not player.is_falling_back:
-		state_machine.change_state(state_machine.get_node("FallBack"))
 
 
 func _on_timer_timeout() -> void:

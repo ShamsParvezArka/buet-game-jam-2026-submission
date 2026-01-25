@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://ilp3tc53522b"]
+[gd_scene load_steps=35 format=3 uid="uid://btdemg6hbst6d"]
 
 [ext_resource type="Script" uid="uid://by58i2brgvy8l" path="res://script/mob_lizerd/mob_basic.gd" id="1_i3q26"]
 [ext_resource type="Script" uid="uid://d0d1bob2yrhif" path="res://script/mob_lizerd/state_machine.gd" id="2_i3q26"]
@@ -133,7 +133,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack",
-"speed": 5.0
+"speed": 11.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -158,7 +158,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -183,7 +183,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fmerv"]
@@ -238,9 +238,8 @@ shape = SubResource("RectangleShape2D_e612c")
 [node name="Flipbook" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_e612c")
-animation = &"attack"
-frame = 10
-frame_progress = 1.0
+animation = &"run"
+frame_progress = 0.35200348
 
 [node name="DetectionArea" type="Area2D" parent="." groups=["mob"]]
 collision_layer = 8
