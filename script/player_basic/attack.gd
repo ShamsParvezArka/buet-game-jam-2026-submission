@@ -29,4 +29,10 @@ func _on_hit_area_body_entered(body: Node2D) -> void:
 			body.hit_direction = GlobalState.FacingDirection.LEFT
 		elif hit_collider.position.x > 0:
 			body.hit_direction = GlobalState.FacingDirection.RIGHT
+	elif body.is_in_group("mob"):
+		body.player_has_hit = true
+		if hit_collider.position.x < 0:
+			body.hit_direction = GlobalState.FacingDirection.LEFT
+		elif hit_collider.position.x > 0:
+			body.hit_direction = GlobalState.FacingDirection.RIGHT
 			

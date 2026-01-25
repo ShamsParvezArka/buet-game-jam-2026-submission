@@ -1,17 +1,17 @@
-[gd_scene load_steps=28 format=3 uid="uid://cqh7lpyho8r07"]
+[gd_scene load_steps=26 format=3 uid="uid://cqh7lpyho8r07"]
 
 [ext_resource type="Script" uid="uid://by58i2brgvy8l" path="res://script/mob/mob_basic.gd" id="1_25hoh"]
-[ext_resource type="Script" uid="uid://d0d1bob2yrhif" path="res://script/mob/state_machine.gd" id="2_e612c"]
+[ext_resource type="Script" uid="uid://c550tnck2brbh" path="res://script/state_machine.gd" id="2_wts8j"]
 [ext_resource type="Script" uid="uid://6utyo4mghfcd" path="res://script/mob/idle.gd" id="3_wts8j"]
 [ext_resource type="Script" uid="uid://doh0rfootilgg" path="res://script/mob/run.gd" id="4_25hoh"]
 [ext_resource type="Script" uid="uid://caqjld53uoavh" path="res://script/mob/attack.gd" id="5_fmerv"]
-[ext_resource type="Script" uid="uid://d1jw40h324y25" path="res://script/mob/knock_back.gd" id="6_e612c"]
 [ext_resource type="Texture2D" uid="uid://6jj1x2e7guvj" path="res://asset/mob/moosyman_attack.png" id="6_fmerv"]
 [ext_resource type="Texture2D" uid="uid://de4p6tgtn7phw" path="res://asset/mob/mooseman_idle.png" id="6_iycmn"]
 [ext_resource type="Texture2D" uid="uid://coli02hf0br0w" path="res://asset/mob/mooseman_run.png" id="7_iycmn"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e612c"]
-size = Vector2(5.5, 9)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_25hoh"]
+radius = 4.0
+height = 12.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8hjou"]
 atlas = ExtResource("6_fmerv")
@@ -52,10 +52,6 @@ region = Rect2(32, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7u02m"]
 atlas = ExtResource("6_iycmn")
 region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2u5lf"]
-atlas = ExtResource("6_fmerv")
-region = Rect2(20, 0, 20, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e612c"]
 atlas = ExtResource("7_iycmn")
@@ -117,14 +113,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2u5lf")
-}],
-"loop": true,
-"name": &"knock_back",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_e612c")
 }, {
 "duration": 1.0,
@@ -145,7 +133,8 @@ animations = [{
 size = Vector2(58, 8)
 
 [node name="mob" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "initial_state", "flipbook") groups=["mob"]]
-collision_layer = 8
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_25hoh")
 state_machine = NodePath("StateMachine")
 initial_state = NodePath("StateMachine/Idle")
@@ -153,7 +142,7 @@ flipbook = NodePath("Flipbook")
 metadata/_custom_type_script = "uid://d2kjmtspxbl7j"
 
 [node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("2_e612c")
+script = ExtResource("2_wts8j")
 player = NodePath("..")
 metadata/_custom_type_script = "uid://c550tnck2brbh"
 
@@ -171,25 +160,20 @@ metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Timer" type="Timer" parent="StateMachine/Attack"]
 process_callback = 0
-wait_time = 0.8
+wait_time = 0.6
 one_shot = true
 
-[node name="KnockBack" type="Node" parent="StateMachine"]
-script = ExtResource("6_e612c")
-metadata/_custom_type_script = "uid://drn4nb81k2l2b"
-
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2(1, 0.5)
-shape = SubResource("RectangleShape2D_e612c")
+shape = SubResource("CapsuleShape2D_25hoh")
 
 [node name="Flipbook" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, 0)
 sprite_frames = SubResource("SpriteFrames_e612c")
-animation = &"knock_back"
+animation = &"attack"
 
 [node name="DetectionArea" type="Area2D" parent="." groups=["mob"]]
-collision_layer = 8
-collision_mask = 2
+collision_layer = 7
+collision_mask = 7
 
 [node name="Collider" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("RectangleShape2D_fmerv")

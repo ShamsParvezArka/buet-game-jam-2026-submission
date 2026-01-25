@@ -1,90 +1,29 @@
 extends CharacterController
 
-@export var normal_speed := 20
-@export var chase_speed = 30
-@export var accleration:= 10
+@export var move_speed_inverse_horizontal := 70
+@export var move_speed_vertical := 0
 @export var gravity := 90
 
-@export var player:CharacterController # target
-@export var left_boundary:Vector2 
-@export var right_boundary:Vector2
+var target: CharacterBody2D = null
+var target_distance := 11.0
+var player_has_hit := false
+var hit_direction := GlobalState.FacingDirection.LEFT
 
-@onready var ray_cast: RayCast2D = $Flipbook/RayCast2D
-@onready var timer: Timer = $Timer
-
-var direction:Vector2
-
-enum State {
-	SEARCH, # looking for enemy
-	FOUND # found the enemy
-}
-var current_state =State.SEARCH # initially searching
-
-func _ready() -> void:
-	# random movment value boundary
-	left_boundary = self.position + Vector2(-10,0) 
-	right_boundary = self.position + Vector2(10,0)
 
 func _physics_process(delta: float) -> void:
 	state_machine.update(delta)
-	move(delta)
-	change_direction()
-	lookForPlayer()
 	
-
-func _process(_delta: float) -> void:
-	direction_horizontal = sign(direction.x)
-	direction_vertical = sign(direction.y)
-	
-func lookForPlayer():
-	if ray_cast.is_colliding():
-		var collider = ray_cast.get_collider()
-		if collider == player:
-			chasePlayer()
-	else:
-		stopChase()
-		
-func chasePlayer():
-	timer.stop()
-	current_state = State.FOUND
-func stopChase():
-	if timer.time_left <= 0:
-		timer.start()
-func move(delta:float):
-	if current_state == State.SEARCH:
-		velocity = velocity.move_toward(direction*normal_speed,accleration*delta)
-	elif current_state == State.FOUND:
-		velocity = velocity.move_toward(direction*chase_speed,accleration*delta)
+	if !self.is_on_floor():
+		self.velocity += Vector2(0, self.gravity) * delta
 	move_and_slide()
 
-func change_direction()-> void:
-	if current_state == State.SEARCH:
-		if flipbook.flip_h:
-			#looking at left
-			if self.position.x >= left_boundary.x:
-				direction = Vector2(-1,0)
-			else:
-				flipbook.flip_h = false
-				ray_cast.target_position = Vector2(50,0)
-			
-		else:
-			if self.position.x <= right_boundary.x:
-				direction = Vector2(1,0)
-			else:
-				flipbook.flip_h	= true
-				ray_cast.target_position = Vector2(-50,0)
+
+func _on_detection_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		target = body
+
+
+func _on_detection_area_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		target = null
 		
-	elif current_state == State.FOUND: # found the player
-		direction = (player.position - self.position).normalized()
-		
-		direction = sign(direction)
-		if direction.x == 1:
-			flipbook.flip_h = false
-			ray_cast.target_position = Vector2(50,0)
-		else:
-			#print("chasing in left")
-			flipbook.flip_h = true
-			ray_cast.target_position = Vector2(-50,0)
-			
-func _on_timer_timeout() -> void:
-	current_state = State.SEARCH

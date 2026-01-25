@@ -17,6 +17,11 @@ func get_distance_from_ground() -> float:
 		return global_position.y - ray_cast_2d.get_collision_point().y
 	return INF
 
+func apply_impulse(direction: GlobalState.FacingDirection) -> void:
+	is_being_pushed = true
+	velocity.x = direction * knockback_strength
+	velocity.y = -knockback_up
+
 
 func _physics_process(delta: float) -> void:
 	if hit:
@@ -28,9 +33,3 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	is_being_pushed = false
-
-
-func apply_impulse(direction: GlobalState.FacingDirection) -> void:
-	is_being_pushed = true
-	velocity.x = direction * knockback_strength
-	velocity.y = -knockback_up

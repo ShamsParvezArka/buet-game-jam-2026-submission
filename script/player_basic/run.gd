@@ -11,6 +11,15 @@ func enter() -> void:
 func update(delta: float) -> void:
 	state_machine.update_facing_direction(player.direction_horizontal)
 	
+	if player.direction_horizontal == 0:
+		state_machine.change_state(state_machine.get_node("Idle"))
+	elif !player.is_on_floor():
+		state_machine.change_state(state_machine.get_node("MidAir"))
+	elif Input.is_action_pressed("jump"):
+		state_machine.change_state(state_machine.get_node("Jump"))
+	elif Input.is_action_pressed("attack"):
+		state_machine.change_state(state_machine.get_node("Attack"))
+	
 	for i in range(player.get_slide_collision_count()):
 		var collision := player.get_slide_collision(i)
 		var box := collision.get_collider()
@@ -21,14 +30,5 @@ func update(delta: float) -> void:
 			if abs(normal.x) > 0.9 and player.direction_horizontal != 0:
 				box.velocity.x = player.direction_horizontal * (player.push_force)
 				box.is_being_pushed = true
-	
-	if player.direction_horizontal == 0:
-		state_machine.change_state(state_machine.get_node("Idle"))
-	elif !player.is_on_floor():
-		state_machine.change_state(state_machine.get_node("MidAir"))
-	elif Input.is_action_pressed("jump"):
-		state_machine.change_state(state_machine.get_node("Jump"))
-	elif Input.is_action_pressed("attack"):
-		state_machine.change_state(state_machine.get_node("Attack"))
 		
 	player.velocity.x = player.direction_horizontal * player.move_speed_horizontal

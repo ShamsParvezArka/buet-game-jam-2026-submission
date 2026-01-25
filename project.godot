@@ -31,6 +31,7 @@ teleport_box=""
 pushable=""
 collectable=""
 player=""
+mob=""
 
 [input]
 
@@ -95,6 +96,7 @@ target_switch={
 2d_physics/layer_1="Environment"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Interaction"
+2d_physics/layer_4="Mob"
 
 [rendering]
 
