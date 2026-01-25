@@ -11,7 +11,6 @@ func apply_impulse(direction: GlobalState.FacingDirection) -> void:
 	
 
 func enter() -> void:
-	print("knock back entered")
 	player.flipbook.play("knock_back")
 	apply_impulse(player.hit_direction)
 	

@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cqomx2alnw0gs" path="res://scene/push_box.tscn" id="5_mqdaa"]
 [ext_resource type="PackedScene" uid="uid://etr28kadskst" path="res://scene/hovering_sword.tscn" id="7_6axd3"]
 [ext_resource type="PackedScene" uid="uid://bk68a4eth0elr" path="res://scene/water_drop.tscn" id="7_whbp6"]
-[ext_resource type="PackedScene" uid="uid://cqh7lpyho8r07" path="res://scene/mob.tscn" id="11_xftar"]
+[ext_resource type="PackedScene" uid="uid://cqh7lpyho8r07" path="res://scene/mob_mooseman.tscn" id="11_xftar"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8jxoh"]
 texture = ExtResource("1_8jxoh")
@@ -277,5 +277,5 @@ position = Vector2(161, 274)
 zoom = Vector2(4, 4)
 script = ExtResource("4_won01")
 
-[node name="mob" parent="." instance=ExtResource("11_xftar")]
-position = Vector2(243, 253)
+[node name="MobMosseman" parent="." instance=ExtResource("11_xftar")]
+position = Vector2(241, 253)

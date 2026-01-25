@@ -354,7 +354,7 @@ radius = 2.0
 height = 6.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pjtj2"]
-size = Vector2(5, 11.75)
+size = Vector2(5, 9.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_od1ww"]
 radius = 3.0
@@ -440,7 +440,7 @@ collision_layer = 2
 collision_mask = 12
 
 [node name="HitCollider" type="CollisionShape2D" parent="HitArea"]
-position = Vector2(6, 0.125)
+position = Vector2(6, -1)
 shape = SubResource("RectangleShape2D_pjtj2")
 disabled = true
 

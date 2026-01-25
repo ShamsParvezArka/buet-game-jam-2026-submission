@@ -2,7 +2,6 @@ extends State
 
 
 func enter() -> void:
-	print("chase state")
 	if player.target == null:
 		state_machine.change_state(state_machine.get_node("Idle"))
 		return

@@ -9,6 +9,8 @@ extends CharacterController
 @export var gravity := 90
 @export var health := 100
 
+var is_hurt := false
+
 
 func _physics_process(delta: float) -> void:
 	state_machine.update(delta)
