@@ -462,17 +462,22 @@ script = ExtResource("19_64wh4")
 
 [node name="Attack" type="AudioStreamPlayer2D" parent="AudioStream"]
 stream = ExtResource("19_8adji")
-volume_db = -14.0
+volume_db = -17.0
+pitch_scale = 2.7
 
 [node name="Climb" type="AudioStreamPlayer2D" parent="AudioStream"]
 stream = ExtResource("20_ldvja")
+volume_db = -10.0
+pitch_scale = 0.4
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="AudioStream"]
 stream = ExtResource("21_stpu3")
-volume_db = -9.0
+volume_db = -17.0
+pitch_scale = 1.5
 
 [node name="PickUp" type="AudioStreamPlayer2D" parent="AudioStream"]
 stream = ExtResource("22_ehgmk")
+volume_db = -13.0
 
 [connection signal="timeout" from="StateMachine/Jump/Timer" to="StateMachine/Jump" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]

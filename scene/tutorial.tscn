@@ -390,6 +390,9 @@ position = Vector2(356, 781)
 [node name="HealingPotion" parent="OverWorld/Level1" instance=ExtResource("10_wrfti")]
 position = Vector2(378, 748)
 
+[node name="WindField" parent="OverWorld/Level1" instance=ExtResource("18_70st3")]
+position = Vector2(446, 764)
+
 [node name="Level2" type="Node" parent="OverWorld"]
 
 [node name="PushTrap" type="Node2D" parent="OverWorld/Level2"]
@@ -478,6 +481,21 @@ position = Vector2(873, 538)
 [node name="WindField2" parent="OverWorld/Level2/Particle" instance=ExtResource("18_70st3")]
 position = Vector2(967, 488)
 
+[node name="PlayerBasic" parent="." instance=ExtResource("2_nvmt1")]
+position = Vector2(366.3345, 772.30237)
+
+[node name="PlayerWizard" parent="." instance=ExtResource("3_mqdaa")]
+position = Vector2(786, 526)
+
+[node name="MobMosseman2" parent="." instance=ExtResource("11_xftar")]
+position = Vector2(1082, 542)
+
+[node name="MobMosseman" parent="." instance=ExtResource("11_xftar")]
+position = Vector2(869, 527)
+
+[node name="MobLizard" parent="." instance=ExtResource("13_l02f5")]
+position = Vector2(1022, 539)
+
 [node name="CameraRig" type="Camera2D" parent="." node_paths=PackedStringArray("basic", "wizard")]
 position = Vector2(176, 705)
 zoom = Vector2(4, 4)
@@ -486,6 +504,7 @@ basic = NodePath("../PlayerBasic")
 wizard = NodePath("../PlayerWizard")
 
 [node name="PlayerMechanicsBasic" type="Node2D" parent="CameraRig"]
+position = Vector2(0, 4)
 
 [node name="Attack" type="AnimatedSprite2D" parent="CameraRig/PlayerMechanicsBasic"]
 position = Vector2(72, 33)
@@ -504,6 +523,7 @@ theme_override_font_sizes/font_size = 31
 text = "Attack"
 
 [node name="PlayerMechanicsWizard" type="Node2D" parent="CameraRig"]
+position = Vector2(0, 4)
 
 [node name="Teleport" type="AnimatedSprite2D" parent="CameraRig/PlayerMechanicsWizard"]
 position = Vector2(72, 33)
@@ -570,22 +590,4 @@ script = ExtResource("12_l6kb6")
 
 [node name="Switch" type="AudioStreamPlayer2D" parent="CameraRig/AudioStream"]
 stream = ExtResource("13_l6kb6")
-volume_db = -10.0
-
-[node name="PlayerBasic" parent="." instance=ExtResource("2_nvmt1")]
-position = Vector2(797, 526)
-
-[node name="PlayerWizard" parent="." instance=ExtResource("3_mqdaa")]
-position = Vector2(786, 526)
-
-[node name="MobMosseman2" parent="." instance=ExtResource("11_xftar")]
-position = Vector2(1082, 542)
-
-[node name="MobMosseman" parent="." instance=ExtResource("11_xftar")]
-position = Vector2(869, 527)
-
-[node name="MobLizard" parent="." instance=ExtResource("13_l02f5")]
-position = Vector2(1022, 539)
-
-[node name="WindField" parent="." instance=ExtResource("18_70st3")]
-position = Vector2(446, 764)
+volume_db = -20.0

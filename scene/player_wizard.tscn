@@ -227,13 +227,15 @@ script = ExtResource("12_nlnu4")
 
 [node name="PickUp" type="AudioStreamPlayer2D" parent="AudioStream"]
 stream = ExtResource("16_qn603")
+volume_db = -13.0
 
 [node name="Teleport" type="AudioStreamPlayer2D" parent="AudioStream"]
 stream = ExtResource("13_wm6vp")
 
 [node name="Switch" type="AudioStreamPlayer2D" parent="AudioStream"]
 stream = ExtResource("14_k6ct3")
-volume_db = -10.0
+volume_db = -17.0
+pitch_scale = 2.0
 
 [connection signal="body_entered" from="Area2D" to="StateMachine/Teleport" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="StateMachine/Teleport" method="_on_area_2d_body_exited"]

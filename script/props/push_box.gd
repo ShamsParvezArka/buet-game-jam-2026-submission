@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 
 @export var friction := 27
-@export var knockback_strength := 30.0
+@export var knockback_strength := 40.0
 @export var knockback_up := 30.0
 @export var gravity := 90.0
 
