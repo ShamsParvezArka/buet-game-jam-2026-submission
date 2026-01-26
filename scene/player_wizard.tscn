@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://kawqca265cno"]
+[gd_scene load_steps=36 format=3 uid="uid://kawqca265cno"]
 
 [ext_resource type="Script" uid="uid://b8nkknlg26ijw" path="res://script/player_wizard/player_wizard.gd" id="1_4sk2y"]
 [ext_resource type="Texture2D" uid="uid://da1bfxkgys2fj" path="res://asset/player_wizard/attack.png" id="1_7x5vd"]
@@ -7,10 +7,13 @@
 [ext_resource type="Script" uid="uid://cbjikgho2ki5v" path="res://script/player_wizard/idle.gd" id="3_4sk2y"]
 [ext_resource type="Script" uid="uid://c550tnck2brbh" path="res://script/state_machine.gd" id="4_7xe6x"]
 [ext_resource type="Script" uid="uid://btcejt7ojog3c" path="res://script/player_wizard/run.gd" id="4_rmfn0"]
-[ext_resource type="Script" uid="uid://djjfaqswsvmfk" path="res://script/player_wizard/attack.gd" id="5_0c07p"]
 [ext_resource type="Script" uid="uid://b3ukspv0vtae1" path="res://script/player_wizard/teleport.gd" id="6_sp1i1"]
 [ext_resource type="Script" uid="uid://d1b65c7i0ltip" path="res://script/player_wizard/pickup.gd" id="7_htsr6"]
 [ext_resource type="Script" uid="uid://c8dccqdaqb82r" path="res://script/player_wizard/teleport_visual.gd" id="11_wbuuc"]
+[ext_resource type="Script" uid="uid://b70cb5isnfjlp" path="res://script/audio_stream.gd" id="12_nlnu4"]
+[ext_resource type="AudioStream" uid="uid://b2wj6qlxgxfj8" path="res://asset/audio/teleport.wav" id="13_wm6vp"]
+[ext_resource type="AudioStream" uid="uid://dkdcb238vu6v4" path="res://asset/audio/switch.wav" id="14_k6ct3"]
+[ext_resource type="AudioStream" uid="uid://co4o0lkfcoiu6" path="res://asset/audio/pick_up.wav" id="16_qn603"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pppx4"]
 atlas = ExtResource("1_7x5vd")
@@ -150,7 +153,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0c07p"]
-radius = 2.0
+radius = 3.0
 height = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0c07p"]
@@ -182,15 +185,6 @@ metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 script = ExtResource("4_rmfn0")
 metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
-[node name="Attack" type="Node" parent="StateMachine"]
-script = ExtResource("5_0c07p")
-metadata/_custom_type_script = "uid://drn4nb81k2l2b"
-
-[node name="Timer" type="Timer" parent="StateMachine/Attack"]
-process_callback = 0
-wait_time = 0.33
-one_shot = true
-
 [node name="Teleport" type="Node" parent="StateMachine"]
 script = ExtResource("6_sp1i1")
 metadata/_custom_type_script = "uid://drn4nb81k2l2b"
@@ -200,12 +194,13 @@ script = ExtResource("7_htsr6")
 metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Flipbook" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -3)
 sprite_frames = SubResource("SpriteFrames_rmfn0")
 animation = &"attack"
 frame_progress = 0.81162626
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 4)
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_0c07p")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -213,7 +208,6 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="Collider" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1.815, 3)
 shape = SubResource("CircleShape2D_0c07p")
 
 [node name="InteractionArea" type="Area2D" parent="."]
@@ -222,13 +216,25 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="Collider" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2(-2, 3)
+position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_wbuuc")
 
 [node name="TeleportVisual" type="Node2D" parent="."]
 script = ExtResource("11_wbuuc")
 
-[connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]
+[node name="AudioStream" type="Node2D" parent="."]
+script = ExtResource("12_nlnu4")
+
+[node name="PickUp" type="AudioStreamPlayer2D" parent="AudioStream"]
+stream = ExtResource("16_qn603")
+
+[node name="Teleport" type="AudioStreamPlayer2D" parent="AudioStream"]
+stream = ExtResource("13_wm6vp")
+
+[node name="Switch" type="AudioStreamPlayer2D" parent="AudioStream"]
+stream = ExtResource("14_k6ct3")
+volume_db = -10.0
+
 [connection signal="body_entered" from="Area2D" to="StateMachine/Teleport" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="StateMachine/Teleport" method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="InteractionArea" to="StateMachine/PickUp" method="_on_interaction_area_body_entered"]

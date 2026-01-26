@@ -7,6 +7,7 @@ func enter() -> void:
 	player.velocity.y = player.jump_force
 	timer.start()	
 	player.flipbook.play("jump")
+	player.audio_stream.play("Jump")
 	
 
 func update(delta: float) -> void:

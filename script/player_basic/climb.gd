@@ -9,6 +9,7 @@ func enter() -> void:
 	
 	GlobalState.player_basic_apply_gravity = false
 	player.flipbook.play("climb")
+	player.audio_stream.play("Climb")
 	
 
 func update(delta: float) -> void:
@@ -28,6 +29,7 @@ func update(delta: float) -> void:
 
 func exit() -> void:
 	GlobalState.player_basic_apply_gravity = true
+	player.audio_stream.stop("Climb")
 	
 
 func _on_interaction_area_area_entered(area: Area2D) -> void:

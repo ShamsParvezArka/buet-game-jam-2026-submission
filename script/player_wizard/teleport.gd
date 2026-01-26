@@ -21,6 +21,8 @@ func enter() -> void:
 		state_machine.change_state(state_machine.previous_state)
 		return
 	
+	player.audio_stream.play("Teleport")
+	
 	object = player.teleport_object_container[player.teleport_object_current_index]
 	swap_time = 0
 	player_start = player.position
@@ -48,6 +50,10 @@ func focus_on_new_object() -> void:
 			player.teleport_object_container[idx].modulate = player.magic_color
 		else:
 			player.teleport_object_container[idx].modulate = Color(1.0, 1.0, 1.0, 1.0)
+
+
+func exit() -> void:
+	player.audio_stream.stop("Teleport")
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

@@ -5,6 +5,7 @@ extends State
 
 
 func enter() -> void:
+	player.audio_stream.play("Attack")
 	if GlobalState.anime_sword_obtained:
 		player.flipbook.play("sword_attack")
 		timer.start()

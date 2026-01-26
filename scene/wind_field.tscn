@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdbmclpwkldip"]
+
+[ext_resource type="Script" uid="uid://b88rqsv4n0lm2" path="res://script/wind_field.gd" id="1_nvhq1"]
+[ext_resource type="Script" uid="uid://b70cb5isnfjlp" path="res://script/audio_stream.gd" id="2_65aey"]
+[ext_resource type="AudioStream" uid="uid://cmqixrnsmo2nu" path="res://asset/audio/wind.wav" id="3_vbryi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mnw31"]
+radius = 47.169907
+
+[node name="WindField" type="Area2D" groups=["wind_field"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_nvhq1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mnw31")
+
+[node name="AudioStream" type="Node2D" parent="."]
+script = ExtResource("2_65aey")
+
+[node name="Wind" type="AudioStreamPlayer2D" parent="AudioStream"]
+stream = ExtResource("3_vbryi")
+volume_db = -14.0
+pitch_scale = 2.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
