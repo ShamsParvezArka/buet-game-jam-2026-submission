@@ -1,8 +1,9 @@
 extends State
 
-var object: CharacterBody2D
+var object: StaticBody2D
 
 func enter() -> void:
+	player.audio_stream.play("PickUp")
 	if object == null:
 		state_machine.change_state(state_machine.previous_state)
 		return

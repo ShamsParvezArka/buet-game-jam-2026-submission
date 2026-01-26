@@ -5,12 +5,54 @@
 [ext_resource type="Texture2D" uid="uid://bcg3urorsqe22" path="res://asset/player_wizard/idle.png" id="1_bjswa"]
 [ext_resource type="Texture2D" uid="uid://clfaxdpf24i6a" path="res://asset/player_wizard/run.png" id="2_e31gb"]
 [ext_resource type="Script" uid="uid://cbjikgho2ki5v" path="res://script/player_wizard/idle.gd" id="3_4sk2y"]
-[ext_resource type="Script" uid="uid://c550tnck2brbh" path="res://script/state_machine.gd" id="4_7xe6x"]
 [ext_resource type="Script" uid="uid://btcejt7ojog3c" path="res://script/player_wizard/run.gd" id="4_rmfn0"]
 [ext_resource type="Script" uid="uid://djjfaqswsvmfk" path="res://script/player_wizard/attack.gd" id="5_0c07p"]
 [ext_resource type="Script" uid="uid://b3ukspv0vtae1" path="res://script/player_wizard/teleport.gd" id="6_sp1i1"]
 [ext_resource type="Script" uid="uid://d1b65c7i0ltip" path="res://script/player_wizard/pickup.gd" id="7_htsr6"]
 [ext_resource type="Script" uid="uid://c8dccqdaqb82r" path="res://script/player_wizard/teleport_visual.gd" id="11_wbuuc"]
+
+[sub_resource type="GDScript" id="GDScript_htsr6"]
+script/source = "class_name StateMachine extends Node2D
+
+@export var player: CharacterBody2D
+
+var states: Dictionary
+var previous_state: State
+var current_state: State
+
+
+func init(initial_state: State) -> void:
+	for child in self.get_children():
+		if child is State:
+			states[child.name] = child
+			child.player = player
+			child.state_machine = self
+	
+	current_state = initial_state
+	current_state.enter()
+	
+
+func update(delta: float) -> void:
+	if current_state:
+		current_state.update(delta)
+
+
+func update_facing_direction(direction_horizontal: float) -> void:
+	if direction_horizontal > 0:
+		player.flipbook.flip_h = false
+	elif direction_horizontal < 0:
+		player.flipbook.flip_h = true
+
+
+func change_state(new_state: State) -> void:
+	if current_state == new_state:
+		return
+	
+	current_state.exit()
+	previous_state = current_state
+	current_state = new_state
+	current_state.enter()
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pppx4"]
 atlas = ExtResource("1_7x5vd")
@@ -170,7 +212,7 @@ flipbook = NodePath("Flipbook")
 metadata/_custom_type_script = "uid://d2kjmtspxbl7j"
 
 [node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("4_7xe6x")
+script = SubResource("GDScript_htsr6")
 player = NodePath("..")
 metadata/_custom_type_script = "uid://c550tnck2brbh"
 

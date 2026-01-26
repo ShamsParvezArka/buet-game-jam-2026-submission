@@ -2,6 +2,7 @@ extends State
 
 @onready var timer: Timer = $Timer
 
+
 func enter() -> void:
 	if player.target == null:
 		state_machine.change_state(state_machine.get_node("Idle"))

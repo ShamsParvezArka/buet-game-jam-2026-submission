@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://hveqhu5colj6"]
+[gd_scene load_steps=70 format=3 uid="uid://hveqhu5colj6"]
 
 [ext_resource type="Script" uid="uid://dfb0xqvguw6kp" path="res://script/player_basic/player_basic.gd" id="1_hyh25"]
 [ext_resource type="Texture2D" uid="uid://cevreuepibf4l" path="res://asset/player_basic/idle.png" id="2_8urdy"]
@@ -18,6 +18,12 @@
 [ext_resource type="Script" uid="uid://bldjwxyqjaq3b" path="res://script/player_basic/pick_up.gd" id="9_d38go"]
 [ext_resource type="Script" uid="uid://6vf24csffoox" path="res://script/player_basic/death.gd" id="10_ad7i5"]
 [ext_resource type="Script" uid="uid://dt1fu8qugd274" path="res://script/player_basic/knock_back.gd" id="11_od1ww"]
+[ext_resource type="Script" uid="uid://cwyin1ffg0h4k" path="res://script/player_basic/audio_stream.gd" id="19_8adji"]
+[ext_resource type="AudioStream" uid="uid://dvgm4exmi56vu" path="res://asset/audio/jump.wav" id="20_64wh4"]
+[ext_resource type="AudioStream" uid="uid://cryhjisxl0gvx" path="res://asset/audio/climb_refined.wav" id="21_aeobq"]
+[ext_resource type="AudioStream" uid="uid://co4o0lkfcoiu6" path="res://asset/audio/pick_up.wav" id="22_33eb7"]
+[ext_resource type="AudioStream" uid="uid://eqp5qrh4mfkr" path="res://asset/audio/death.wav" id="23_aeobq"]
+[ext_resource type="AudioStream" uid="uid://dkvamopmxwixg" path="res://asset/audio/attack.wav" id="24_b1bor"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5p62h"]
 atlas = ExtResource("2_ujlph")
@@ -451,6 +457,26 @@ collision_mask = 4
 
 [node name="Collider" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("CapsuleShape2D_od1ww")
+
+[node name="AudioStream" type="Node2D" parent="."]
+script = ExtResource("19_8adji")
+
+[node name="Climb" type="AudioStreamPlayer2D" parent="AudioStream"]
+stream = ExtResource("21_aeobq")
+
+[node name="PickUp" type="AudioStreamPlayer2D" parent="AudioStream"]
+stream = ExtResource("22_33eb7")
+
+[node name="Death" type="AudioStreamPlayer2D" parent="AudioStream"]
+stream = ExtResource("23_aeobq")
+
+[node name="Attack" type="AudioStreamPlayer2D" parent="AudioStream"]
+stream = ExtResource("24_b1bor")
+volume_db = -15.0
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="AudioStream"]
+stream = ExtResource("20_64wh4")
+volume_db = -10.0
 
 [connection signal="timeout" from="StateMachine/Jump/Timer" to="StateMachine/Jump" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]
