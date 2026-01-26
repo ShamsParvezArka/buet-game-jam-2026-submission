@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bve2xqjfakxs2"]
+
+[ext_resource type="Texture2D" uid="uid://bl56clbafd33i" path="res://asset/props/potion_red.png" id="1_fs1ip"]
+[ext_resource type="Script" uid="uid://tqolgfks52hr" path="res://script/props/hovering_sword.gd" id="1_jnfx7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jnfx7"]
+radius = 6.0827627
+
+[node name="HealingPotion" type="StaticBody2D" groups=["collectable"]]
+collision_layer = 4
+script = ExtResource("1_jnfx7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 0.17627823
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("1_fs1ip")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jnfx7")

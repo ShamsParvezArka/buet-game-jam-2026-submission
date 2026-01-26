@@ -7,8 +7,8 @@ extends TextureButton
 @export var menu_name: String
 
 
-func setup_text(name: String) -> void:
-	label.text = name
+func setup_text(label_name: String) -> void:
+	label.text = label_name
 
 func _ready():
 	selector.visible = false

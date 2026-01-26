@@ -37,6 +37,9 @@ func _process(delta: float) -> void:
 	queue_redraw()
 	
 	if Input.is_action_just_pressed("target_switch") and !player.teleport_object_container.is_empty():
+		if player.teleport_object_container.size() > 1:
+			player.audio_stream.play("Switch")
+			
 		var idx = player.teleport_object_current_index
 		var size = player.teleport_object_container.size()
 		player.teleport_object_current_index = (idx + 1) % size

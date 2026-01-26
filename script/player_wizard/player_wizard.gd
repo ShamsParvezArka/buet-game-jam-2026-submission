@@ -1,5 +1,7 @@
 extends CharacterController
 
+@onready var audio_stream: Node2D = $AudioStream
+
 @export var move_speed_horizontal := 30
 @export var move_speed_vertical := 0
 @export var jump_force := -30
