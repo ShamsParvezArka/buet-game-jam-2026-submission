@@ -12,3 +12,6 @@ var can_climb: bool
 
 var anime_sword_obtained := true
 var is_holding := false
+
+var game_started := false
+var game_paused := false

@@ -19,6 +19,8 @@ func update(delta: float) -> void:
 		state_machine.change_state(state_machine.get_node("Death"))
 	if player.is_hurt == true and player.health > 0:
 		state_machine.change_state(state_machine.get_node("KnockBack"))
+		player.label.text = "-20"
+		player.timer.start()
 		player.is_hurt = false
 		player.is_hit = false
 

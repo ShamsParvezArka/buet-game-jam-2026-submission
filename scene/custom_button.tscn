@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7227ya13p2y"]
+
+[ext_resource type="Script" uid="uid://bbssxnxsabc1n" path="res://script/UI/custom_button.gd" id="1_je7iq"]
+[ext_resource type="FontFile" uid="uid://7myvlg8x5agp" path="res://asset/font/PixelOperator8.ttf" id="1_u8xs3"]
+
+[node name="CustomButton" type="TextureButton"]
+custom_minimum_size = Vector2(50, 20)
+button_mask = 0
+ignore_texture_size = true
+script = ExtResource("1_je7iq")
+menu_name = "Start"
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0.81268024, 0.81268024, 0.81268, 1)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("1_u8xs3")
+text = "Start"
+
+[node name="Selector" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -19.0
+offset_top = 4.0
+offset_right = 21.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("1_u8xs3")
+text = "*"
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

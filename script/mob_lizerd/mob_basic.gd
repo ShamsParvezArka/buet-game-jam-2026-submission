@@ -6,6 +6,9 @@ extends CharacterController
 @export var health:= 100
 @export var jump_force := -38
 
+@onready var label: Label = $Label
+@onready var timer: Timer = $Label/Timer
+
 var target: CharacterBody2D = null
 var target_distance := 9.0
 var is_hurt := false
@@ -30,3 +33,7 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 func _on_detection_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		target = null
+
+
+func _on_mob_2_timer_timeout() -> void:
+	pass # Replace with function body.

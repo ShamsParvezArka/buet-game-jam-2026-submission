@@ -30,6 +30,7 @@ func _on_hit_area_body_entered(body: Node2D) -> void:
 		elif hit_collider.position.x > 0:
 			body.hit_direction = GlobalState.FacingDirection.RIGHT
 	elif body.is_in_group("mob"):
+		print("enemy_body detected ")
 		body.is_hurt = true
 		# enemy death logics
 		if body.health:

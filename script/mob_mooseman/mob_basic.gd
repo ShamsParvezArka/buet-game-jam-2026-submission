@@ -6,6 +6,8 @@ extends CharacterController
 @export var health:= 100
 @export var jump_force := -38
 
+@onready var label:Label = $Label
+@onready var timer:Timer = $Label/Timer		
 var target: CharacterBody2D = null
 var target_distance := 9.0
 var is_hurt := false
@@ -16,7 +18,6 @@ var fall_back_distance := 23
 
 func _physics_process(delta: float) -> void:
 	state_machine.update(delta)
-	
 	if !self.is_on_floor():
 		self.velocity += Vector2(0, self.gravity) * delta
 	self.move_and_slide()

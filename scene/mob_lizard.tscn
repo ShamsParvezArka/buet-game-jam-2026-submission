@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://btdemg6hbst6d"]
+[gd_scene load_steps=37 format=3 uid="uid://btdemg6hbst6d"]
 
 [ext_resource type="Script" uid="uid://by58i2brgvy8l" path="res://script/mob_lizerd/mob_basic.gd" id="1_i3q26"]
 [ext_resource type="Script" uid="uid://d0d1bob2yrhif" path="res://script/mob_lizerd/state_machine.gd" id="2_rkwro"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://r2cnj8vendo6" path="res://asset/mob/lizard_attack.png" id="8_y4f8l"]
 [ext_resource type="Texture2D" uid="uid://cv6p34xscrqpp" path="res://asset/mob/lizard_idle.png" id="10_y4f8l"]
 [ext_resource type="Texture2D" uid="uid://d07lleqwtl557" path="res://asset/mob/lizard_run.png" id="11_i3q26"]
+[ext_resource type="FontFile" uid="uid://7myvlg8x5agp" path="res://asset/font/PixelOperator8.ttf" id="12_cykjh"]
+[ext_resource type="Script" uid="uid://cnopx1o2o33ib" path="res://script/damage_indicator.gd" id="12_rkwro"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3q26"]
 size = Vector2(13.375, 9.5)
@@ -241,6 +243,7 @@ sprite_frames = SubResource("SpriteFrames_rkwro")
 animation = &"idle"
 
 [node name="DetectionArea" type="Area2D" parent="." groups=["mob"]]
+position = Vector2(0, 2)
 collision_layer = 8
 collision_mask = 2
 
@@ -248,6 +251,19 @@ collision_mask = 2
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_fmerv")
 
+[node name="Label" type="Label" parent="."]
+offset_left = -2.0
+offset_top = -7.0
+offset_right = 62.0
+offset_bottom = 35.0
+scale = Vector2(0.1, 0.1)
+theme_override_fonts/font = ExtResource("12_cykjh")
+theme_override_font_sizes/font_size = 30
+script = ExtResource("12_rkwro")
+
+[node name="Timer" type="Timer" parent="Label"]
+
 [connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="timeout" from="Label/Timer" to="Label" method="_on_mob_lizerd_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cqh7lpyho8r07"]
+[gd_scene load_steps=29 format=3 uid="uid://cqh7lpyho8r07"]
 
 [ext_resource type="Script" uid="uid://biox743xyi6oh" path="res://script/mob_mooseman/mob_basic.gd" id="1_mwebp"]
 [ext_resource type="Script" uid="uid://cbqpw4dsmuwif" path="res://script/mob_mooseman/state_machine.gd" id="2_rryhp"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://cjudcaxtxj1y6" path="res://script/mob_mooseman/knock_back.gd" id="6_wybpu"]
 [ext_resource type="Texture2D" uid="uid://coli02hf0br0w" path="res://asset/mob/mooseman_run.png" id="7_iycmn"]
 [ext_resource type="Script" uid="uid://br85wek2ckwku" path="res://script/mob_mooseman/death.gd" id="7_q8aka"]
-[ext_resource type="FontFile" uid="uid://7myvlg8x5agp" path="res://asset/font/PixelOperator8.ttf" id="11_4u5rm"]
 [ext_resource type="Script" uid="uid://cnopx1o2o33ib" path="res://script/damage_indicator.gd" id="11_rryhp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwebp"]
@@ -203,13 +202,12 @@ position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_7dwa7")
 
 [node name="Label" type="Label" parent="."]
-offset_left = -2.0
-offset_top = -9.0
-offset_right = 62.0
-offset_bottom = 33.0
+offset_left = -5.0000005
+offset_top = -8.0
+offset_right = 38.0
+offset_bottom = 15.0
 scale = Vector2(0.1, 0.1)
-theme_override_fonts/font = ExtResource("11_4u5rm")
-theme_override_font_sizes/font_size = 30
+text = "digit"
 script = ExtResource("11_rryhp")
 
 [node name="Timer" type="Timer" parent="Label"]
@@ -217,4 +215,3 @@ script = ExtResource("11_rryhp")
 [connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
-[connection signal="timeout" from="Label/Timer" to="Label" method="_on_mob_mooseman_timer_timeout"]
