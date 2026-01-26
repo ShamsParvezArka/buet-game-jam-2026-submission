@@ -25,6 +25,7 @@ func _physics_process(delta: float) -> void:
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		target = body
+		print("player detected")
 
 
 func _on_detection_area_body_exited(body: Node2D) -> void:

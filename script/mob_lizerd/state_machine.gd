@@ -9,4 +9,3 @@ func update_facing_direction(direction_horizontal: float) -> void:
 		player.flipbook.flip_h = false
 	else:
 		player.flipbook.flip_h = true
-		

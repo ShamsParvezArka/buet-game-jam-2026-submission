@@ -25,6 +25,4 @@ func update(delta: float) -> void:
 		player.velocity.x = sign(-d.normalized().x) * player.move_speed_horizontal
 	else:
 		player.velocity = Vector2.ZERO
-		state_machine.change_state(state_machine.get_node("Attack"))	
-	
-		
+		state_machine.change_state(state_machine.get_node("Attack"))

@@ -15,5 +15,3 @@ func update(delta: float) -> void:
 		state_machine.change_state(state_machine.get_node("Chase"))
 	elif player.is_hurt and player.health > 0:
 		state_machine.change_state(state_machine.get_node("KnockBack"))
-
-		

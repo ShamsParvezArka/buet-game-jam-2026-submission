@@ -1,17 +1,17 @@
 [gd_scene load_steps=28 format=3 uid="uid://cqh7lpyho8r07"]
 
-[ext_resource type="Script" uid="uid://by58i2brgvy8l" path="res://script/mob_mooseman/mob_basic.gd" id="1_25hoh"]
-[ext_resource type="Script" uid="uid://d0d1bob2yrhif" path="res://script/mob_mooseman/state_machine.gd" id="2_e612c"]
-[ext_resource type="Script" uid="uid://6utyo4mghfcd" path="res://script/mob_mooseman/idle.gd" id="3_wts8j"]
-[ext_resource type="Script" uid="uid://doh0rfootilgg" path="res://script/mob_mooseman/run.gd" id="4_25hoh"]
-[ext_resource type="Script" uid="uid://caqjld53uoavh" path="res://script/mob_mooseman/attack.gd" id="5_fmerv"]
-[ext_resource type="Script" uid="uid://d1jw40h324y25" path="res://script/mob_mooseman/knock_back.gd" id="6_e612c"]
+[ext_resource type="Script" uid="uid://biox743xyi6oh" path="res://script/mob_mooseman/mob_basic.gd" id="1_mwebp"]
+[ext_resource type="Script" uid="uid://cbqpw4dsmuwif" path="res://script/mob_mooseman/state_machine.gd" id="2_rryhp"]
+[ext_resource type="Script" uid="uid://b61gjy64md2lm" path="res://script/mob_mooseman/idle.gd" id="3_4u5rm"]
+[ext_resource type="Script" uid="uid://bgremsc26hg4t" path="res://script/mob_mooseman/chase.gd" id="4_x7qho"]
+[ext_resource type="Script" uid="uid://ctvj7uefp88e7" path="res://script/mob_mooseman/attack.gd" id="5_ro641"]
 [ext_resource type="Texture2D" uid="uid://6jj1x2e7guvj" path="res://asset/mob/moosyman_attack.png" id="6_fmerv"]
 [ext_resource type="Texture2D" uid="uid://de4p6tgtn7phw" path="res://asset/mob/mooseman_idle.png" id="6_iycmn"]
-[ext_resource type="Script" uid="uid://dc3s05wt63m4f" path="res://script/mob_mooseman/death.gd" id="7_emakc"]
+[ext_resource type="Script" uid="uid://cjudcaxtxj1y6" path="res://script/mob_mooseman/knock_back.gd" id="6_wybpu"]
 [ext_resource type="Texture2D" uid="uid://coli02hf0br0w" path="res://asset/mob/mooseman_run.png" id="7_iycmn"]
+[ext_resource type="Script" uid="uid://br85wek2ckwku" path="res://script/mob_mooseman/death.gd" id="7_q8aka"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e612c"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwebp"]
 size = Vector2(5.5, 9)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_akspq"]
@@ -70,7 +70,7 @@ region = Rect2(32, 0, 16, 16)
 atlas = ExtResource("7_iycmn")
 region = Rect2(48, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_e612c"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_rryhp"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -143,32 +143,32 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fmerv"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dwa7"]
 size = Vector2(58, 6)
 
 [node name="MobMosseman" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "initial_state", "flipbook") groups=["mob"]]
 collision_layer = 8
-script = ExtResource("1_25hoh")
+script = ExtResource("1_mwebp")
 state_machine = NodePath("StateMachine")
 initial_state = NodePath("StateMachine/Idle")
 flipbook = NodePath("Flipbook")
 metadata/_custom_type_script = "uid://d2kjmtspxbl7j"
 
-[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("2_e612c")
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("player") groups=["mob"]]
+script = ExtResource("2_rryhp")
 player = NodePath("..")
 metadata/_custom_type_script = "uid://c550tnck2brbh"
 
 [node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("3_wts8j")
+script = ExtResource("3_4u5rm")
 metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Chase" type="Node" parent="StateMachine"]
-script = ExtResource("4_25hoh")
+script = ExtResource("4_x7qho")
 metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Attack" type="Node" parent="StateMachine"]
-script = ExtResource("5_fmerv")
+script = ExtResource("5_ro641")
 metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Timer" type="Timer" parent="StateMachine/Attack"]
@@ -177,20 +177,19 @@ wait_time = 0.64
 one_shot = true
 
 [node name="KnockBack" type="Node" parent="StateMachine"]
-script = ExtResource("6_e612c")
+script = ExtResource("6_wybpu")
 metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Death" type="Node" parent="StateMachine"]
-script = ExtResource("7_emakc")
+script = ExtResource("7_q8aka")
 metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_e612c")
+shape = SubResource("RectangleShape2D_mwebp")
 
 [node name="Flipbook" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_e612c")
+sprite_frames = SubResource("SpriteFrames_rryhp")
 animation = &"death"
-frame_progress = 0.33403355
 flip_h = true
 
 [node name="DetectionArea" type="Area2D" parent="." groups=["mob"]]
@@ -199,7 +198,7 @@ collision_mask = 2
 
 [node name="Collider" type="CollisionShape2D" parent="DetectionArea"]
 position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_fmerv")
+shape = SubResource("RectangleShape2D_7dwa7")
 
 [connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

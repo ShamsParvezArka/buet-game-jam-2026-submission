@@ -1,18 +1,18 @@
 [gd_scene load_steps=35 format=3 uid="uid://btdemg6hbst6d"]
 
 [ext_resource type="Script" uid="uid://by58i2brgvy8l" path="res://script/mob_lizerd/mob_basic.gd" id="1_i3q26"]
-[ext_resource type="Script" uid="uid://d0d1bob2yrhif" path="res://script/mob_lizerd/state_machine.gd" id="2_i3q26"]
-[ext_resource type="Script" uid="uid://6utyo4mghfcd" path="res://script/mob_lizerd/idle.gd" id="3_i3q26"]
-[ext_resource type="Script" uid="uid://doh0rfootilgg" path="res://script/mob_lizerd/run.gd" id="4_rkwro"]
-[ext_resource type="Script" uid="uid://caqjld53uoavh" path="res://script/mob_lizerd/attack.gd" id="5_i3q26"]
-[ext_resource type="Script" uid="uid://d1jw40h324y25" path="res://script/mob_lizerd/knock_back.gd" id="6_rkwro"]
-[ext_resource type="Script" uid="uid://dc3s05wt63m4f" path="res://script/mob_lizerd/death.gd" id="7_cykjh"]
-[ext_resource type="Script" uid="uid://bxaq53j0h0ter" path="res://script/mob_lizerd/fall_back.gd" id="8_lblll"]
+[ext_resource type="Script" uid="uid://d0d1bob2yrhif" path="res://script/mob_lizerd/state_machine.gd" id="2_rkwro"]
+[ext_resource type="Script" uid="uid://6utyo4mghfcd" path="res://script/mob_lizerd/idle.gd" id="3_cykjh"]
+[ext_resource type="Script" uid="uid://doh0rfootilgg" path="res://script/mob_lizerd/run.gd" id="4_lblll"]
+[ext_resource type="Script" uid="uid://caqjld53uoavh" path="res://script/mob_lizerd/attack.gd" id="5_ifktm"]
+[ext_resource type="Script" uid="uid://d1jw40h324y25" path="res://script/mob_lizerd/knock_back.gd" id="6_rum3h"]
+[ext_resource type="Script" uid="uid://dc3s05wt63m4f" path="res://script/mob_lizerd/death.gd" id="7_i1202"]
+[ext_resource type="Script" uid="uid://bxaq53j0h0ter" path="res://script/mob_lizerd/fall_back.gd" id="8_i578o"]
 [ext_resource type="Texture2D" uid="uid://r2cnj8vendo6" path="res://asset/mob/lizard_attack.png" id="8_y4f8l"]
 [ext_resource type="Texture2D" uid="uid://cv6p34xscrqpp" path="res://asset/mob/lizard_idle.png" id="10_y4f8l"]
 [ext_resource type="Texture2D" uid="uid://d07lleqwtl557" path="res://asset/mob/lizard_run.png" id="11_i3q26"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e612c"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3q26"]
 size = Vector2(13.375, 9.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cykjh"]
@@ -95,7 +95,7 @@ region = Rect2(32, 0, 16, 16)
 atlas = ExtResource("11_i3q26")
 region = Rect2(48, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_e612c"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_rkwro"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -197,21 +197,21 @@ initial_state = NodePath("StateMachine/Idle")
 flipbook = NodePath("Flipbook")
 metadata/_custom_type_script = "uid://d2kjmtspxbl7j"
 
-[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("2_i3q26")
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("player") groups=["mob"]]
+script = ExtResource("2_rkwro")
 player = NodePath("..")
 metadata/_custom_type_script = "uid://c550tnck2brbh"
 
 [node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("3_i3q26")
+script = ExtResource("3_cykjh")
 metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Chase" type="Node" parent="StateMachine"]
-script = ExtResource("4_rkwro")
+script = ExtResource("4_lblll")
 metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Attack" type="Node" parent="StateMachine"]
-script = ExtResource("5_i3q26")
+script = ExtResource("5_ifktm")
 metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Timer" type="Timer" parent="StateMachine/Attack"]
@@ -220,26 +220,25 @@ wait_time = 0.658
 one_shot = true
 
 [node name="KnockBack" type="Node" parent="StateMachine"]
-script = ExtResource("6_rkwro")
+script = ExtResource("6_rum3h")
 metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Death" type="Node" parent="StateMachine"]
-script = ExtResource("7_cykjh")
+script = ExtResource("7_i1202")
 metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="FallBack" type="Node" parent="StateMachine"]
-script = ExtResource("8_lblll")
+script = ExtResource("8_i578o")
 metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(-2.6875, 2)
-shape = SubResource("RectangleShape2D_e612c")
+shape = SubResource("RectangleShape2D_i3q26")
 
 [node name="Flipbook" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, 1)
-sprite_frames = SubResource("SpriteFrames_e612c")
-animation = &"run"
-frame_progress = 0.35200348
+sprite_frames = SubResource("SpriteFrames_rkwro")
+animation = &"idle"
 
 [node name="DetectionArea" type="Area2D" parent="." groups=["mob"]]
 collision_layer = 8

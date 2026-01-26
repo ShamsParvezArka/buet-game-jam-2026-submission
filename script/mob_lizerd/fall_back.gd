@@ -1,3 +1,4 @@
+
 extends State
 
 
@@ -16,5 +17,3 @@ func update(delta: float) -> void:
 	
 	var d = player.global_position - player.target.global_position
 	player.velocity.x = sign(d.normalized().x) * player.move_speed_horizontal
-
-	
