@@ -14,6 +14,7 @@ var is_hurt := false
 
 
 func _physics_process(delta: float) -> void:
+	print("player health: ", health)
 	state_machine.update(delta)
 	
 	if not self.is_on_floor() and GlobalState.player_basic_apply_gravity:

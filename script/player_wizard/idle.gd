@@ -7,6 +7,9 @@ func enter() -> void:
 
 func update(delta: float) -> void:
 	if GlobalState.current_selected_player == player:
+		if player.health <= 0:
+			state_machine.change_state(state_machine.get_node("Death"))
+			return
 		if player.direction_horizontal != 0:
 			state_machine.change_state(state_machine.get_node("Run"))
 		elif Input.is_action_just_pressed("teleport"):

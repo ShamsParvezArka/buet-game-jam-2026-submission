@@ -2,9 +2,10 @@ extends State
 
 @onready var timer: Timer = $Timer
 
+
 func enter() -> void:
 	timer.start()
-	player.flipbook.play("mid_air")
+	player.flipbook.play("death")
 	player.set_collision_mask_value(1, false)
 	player.velocity.y = player.jump_force
 
@@ -14,6 +15,4 @@ func _on_timer_timeout() -> void:
 	player.velocity = Vector2.ZERO
 	player.set_collision_mask_value(1, true)
 	state_machine.change_state(state_machine.get_node("Idle"))
-	player.health = 100
-
-	
+	player.health = 20

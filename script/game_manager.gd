@@ -11,7 +11,6 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	print(GlobalState.push_trap_count)
 	if Input.is_action_just_pressed("pause"):
 		self.get_tree().paused = not self.get_tree().paused
 		GlobalState.game_paused = self.get_tree().paused

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://kawqca265cno"]
+[gd_scene load_steps=38 format=3 uid="uid://kawqca265cno"]
 
 [ext_resource type="Script" uid="uid://b8nkknlg26ijw" path="res://script/player_wizard/player_wizard.gd" id="1_4sk2y"]
 [ext_resource type="Texture2D" uid="uid://da1bfxkgys2fj" path="res://asset/player_wizard/attack.png" id="1_7x5vd"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://btcejt7ojog3c" path="res://script/player_wizard/run.gd" id="4_rmfn0"]
 [ext_resource type="Script" uid="uid://b3ukspv0vtae1" path="res://script/player_wizard/teleport.gd" id="6_sp1i1"]
 [ext_resource type="Script" uid="uid://d1b65c7i0ltip" path="res://script/player_wizard/pickup.gd" id="7_htsr6"]
+[ext_resource type="Script" uid="uid://dmnv64bkn0evc" path="res://script/player_wizard/death.gd" id="7_raemi"]
 [ext_resource type="Script" uid="uid://c8dccqdaqb82r" path="res://script/player_wizard/teleport_visual.gd" id="11_wbuuc"]
 [ext_resource type="Script" uid="uid://b70cb5isnfjlp" path="res://script/audio_stream.gd" id="12_nlnu4"]
 [ext_resource type="AudioStream" uid="uid://b2wj6qlxgxfj8" path="res://asset/audio/teleport.wav" id="13_wm6vp"]
@@ -42,6 +43,10 @@ region = Rect2(90, 0, 18, 18)
 [sub_resource type="AtlasTexture" id="AtlasTexture_82r40"]
 atlas = ExtResource("1_7x5vd")
 region = Rect2(108, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mq0qp"]
+atlas = ExtResource("1_bjswa")
+region = Rect2(54, 0, 18, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e31gb"]
 atlas = ExtResource("1_bjswa")
@@ -110,6 +115,14 @@ animations = [{
 "loop": false,
 "name": &"attack",
 "speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mq0qp")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -193,11 +206,19 @@ metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 script = ExtResource("7_htsr6")
 metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource("7_raemi")
+metadata/_custom_type_script = "uid://drn4nb81k2l2b"
+
+[node name="Timer" type="Timer" parent="StateMachine/Death"]
+process_callback = 0
+wait_time = 2.0
+one_shot = true
+
 [node name="Flipbook" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, -3)
 sprite_frames = SubResource("SpriteFrames_rmfn0")
-animation = &"attack"
-frame_progress = 0.81162626
+animation = &"death"
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -237,6 +258,7 @@ stream = ExtResource("14_k6ct3")
 volume_db = -17.0
 pitch_scale = 2.0
 
+[connection signal="timeout" from="StateMachine/Death/Timer" to="StateMachine/Death" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="StateMachine/Teleport" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="StateMachine/Teleport" method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="InteractionArea" to="StateMachine/PickUp" method="_on_interaction_area_body_entered"]

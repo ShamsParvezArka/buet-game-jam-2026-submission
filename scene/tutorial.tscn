@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://dvyel64o3s4au"]
+[gd_scene load_steps=45 format=4 uid="uid://dvyel64o3s4au"]
 
 [ext_resource type="Texture2D" uid="uid://dwod412cnxdjd" path="res://asset/environment.png" id="1_8jxoh"]
 [ext_resource type="Texture2D" uid="uid://c206ra282hrcm" path="res://asset/player_icons.png" id="2_d4rgf"]
@@ -16,10 +16,14 @@
 [ext_resource type="PackedScene" uid="uid://cgonhm8tdxi77" path="res://scene/push_trap.tscn" id="11_1gsx5"]
 [ext_resource type="PackedScene" uid="uid://cqh7lpyho8r07" path="res://scene/mob_mooseman.tscn" id="11_xftar"]
 [ext_resource type="Script" uid="uid://betle50krjupc" path="res://script/player_basic/audio_stream.gd" id="12_l6kb6"]
+[ext_resource type="Script" uid="uid://c33fuknq8a2sb" path="res://script/wall_door.gd" id="12_u55ub"]
 [ext_resource type="FontFile" uid="uid://7myvlg8x5agp" path="res://asset/font/PixelOperator8.ttf" id="12_ui1wm"]
+[ext_resource type="Texture2D" uid="uid://bhn5wrmkgb37c" path="res://asset/wall_door.png" id="12_xldyi"]
 [ext_resource type="Texture2D" uid="uid://c77k4flaov58r" path="res://asset/keyboard-&-mouse_sheet_default.png" id="13_6uqiw"]
 [ext_resource type="PackedScene" uid="uid://btdemg6hbst6d" path="res://scene/mob_lizard.tscn" id="13_l02f5"]
 [ext_resource type="AudioStream" uid="uid://dkdcb238vu6v4" path="res://asset/audio/switch.wav" id="13_l6kb6"]
+[ext_resource type="Script" uid="uid://d4jf4bn748xpl" path="res://script/death_trap.gd" id="14_hrywj"]
+[ext_resource type="Script" uid="uid://dhte77fq342q7" path="res://script/tail_ender.gd" id="16_ebune"]
 [ext_resource type="PackedScene" uid="uid://bdbmclpwkldip" path="res://scene/wind_field.tscn" id="18_70st3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8jxoh"]
@@ -209,6 +213,21 @@ tile_size = Vector2i(8, 8)
 physics_layer_0/collision_layer = 1
 sources/2 = SubResource("TileSetAtlasSource_nvmt1")
 sources/0 = SubResource("TileSetAtlasSource_6axd3")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebune"]
+size = Vector2(8, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrywj"]
+size = Vector2(20, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u55ub"]
+size = Vector2(20, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6uqiw"]
+radius = 24.020824
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebune"]
+radius = 26.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ebune"]
 atlas = ExtResource("13_6uqiw")
@@ -481,11 +500,38 @@ position = Vector2(873, 538)
 [node name="WindField2" parent="OverWorld/Level2/Particle" instance=ExtResource("18_70st3")]
 position = Vector2(967, 488)
 
+[node name="WallDoor" type="StaticBody2D" parent="OverWorld/Level2"]
+position = Vector2(796, 523)
+script = ExtResource("12_u55ub")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OverWorld/Level2/WallDoor"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_ebune")
+
+[node name="Sprite2D" type="Sprite2D" parent="OverWorld/Level2/WallDoor"]
+texture = ExtResource("12_xldyi")
+
+[node name="DeathTrap" type="StaticBody2D" parent="OverWorld/Level2"]
+position = Vector2(968.96893, 517.54376)
+collision_mask = 3
+script = ExtResource("14_hrywj")
+
+[node name="Collider" type="CollisionShape2D" parent="OverWorld/Level2/DeathTrap"]
+position = Vector2(973.03107, 526.45624)
+shape = SubResource("RectangleShape2D_hrywj")
+
+[node name="Area2D" type="Area2D" parent="OverWorld/Level2/DeathTrap"]
+position = Vector2(-968.96893, -517.54376)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OverWorld/Level2/DeathTrap/Area2D"]
+position = Vector2(971, 522)
+shape = SubResource("RectangleShape2D_u55ub")
+
 [node name="PlayerBasic" parent="." instance=ExtResource("2_nvmt1")]
-position = Vector2(366.3345, 772.30237)
+position = Vector2(781, 525)
 
 [node name="PlayerWizard" parent="." instance=ExtResource("3_mqdaa")]
-position = Vector2(786, 526)
+position = Vector2(745, 526)
 
 [node name="MobMosseman2" parent="." instance=ExtResource("11_xftar")]
 position = Vector2(1082, 542)
@@ -496,8 +542,21 @@ position = Vector2(869, 527)
 [node name="MobLizard" parent="." instance=ExtResource("13_l02f5")]
 position = Vector2(1022, 539)
 
+[node name="TailEnder" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("16_ebune")
+
+[node name="Level0" type="CollisionShape2D" parent="TailEnder"]
+position = Vector2(409, 244)
+shape = SubResource("CircleShape2D_6uqiw")
+
+[node name="Level1" type="CollisionShape2D" parent="TailEnder"]
+position = Vector2(464, 776)
+shape = SubResource("CircleShape2D_ebune")
+
 [node name="CameraRig" type="Camera2D" parent="." node_paths=PackedStringArray("basic", "wizard")]
-position = Vector2(176, 705)
+position = Vector2(157, 292)
 zoom = Vector2(4, 4)
 script = ExtResource("4_won01")
 basic = NodePath("../PlayerBasic")
@@ -591,3 +650,6 @@ script = ExtResource("12_l6kb6")
 [node name="Switch" type="AudioStreamPlayer2D" parent="CameraRig/AudioStream"]
 stream = ExtResource("13_l6kb6")
 volume_db = -20.0
+
+[connection signal="body_entered" from="TailEnder" to="TailEnder" method="_on_body_entered"]
+[connection signal="body_exited" from="TailEnder" to="TailEnder" method="_on_body_exited"]
