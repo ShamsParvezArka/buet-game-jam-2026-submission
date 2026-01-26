@@ -1,9 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://dymt2rn5onkfp"]
+[gd_scene load_steps=7 format=3 uid="uid://dymt2rn5onkfp"]
 
 [ext_resource type="Script" uid="uid://cdovn1drsw6ue" path="res://script/main_menu.gd" id="1_15cg4"]
-[ext_resource type="PackedScene" uid="uid://dsyqguiawmohf" path="res://scene/custom_button.tscn" id="2_ty7cv"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ty7cv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2xoo"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.22670761, 0.22670746, 0.22670746, 1)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_15cg4"]
+bg_color = Color(0.5931338, 0.5931335, 0.59313357, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.22670761, 0.22670746, 0.22670746, 1)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ty7cv"]
+bg_color = Color(0.8646748, 0.8646754, 0.8646747, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.22670761, 0.22670746, 0.22670746, 1)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2xoo"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -30,24 +61,57 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -25.0
-offset_top = -22.0
-offset_right = 25.0
-offset_bottom = 22.0
+offset_left = -119.5
+offset_top = -4.0
+offset_right = 119.5
+offset_bottom = 95.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 6
+alignment = 1
 
-[node name="Start" parent="VBoxContainer" instance=ExtResource("2_ty7cv")]
+[node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../Exit")
-focus_neighbor_bottom = NodePath("../Exit")
-menu_name = "Start"
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_h2xoo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_15cg4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ty7cv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h2xoo")
+text = "Start game"
 
-[node name="Exit" parent="VBoxContainer" instance=ExtResource("2_ty7cv")]
+[node name="Button2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../Start")
-focus_neighbor_bottom = NodePath("../Start")
-menu_name = "Exit"
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_h2xoo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_15cg4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ty7cv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h2xoo")
+text = "Exit"
 
-[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -182.5
+offset_top = 69.0
+offset_right = 182.5
+offset_bottom = 153.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 61
+text = "Game Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_startbtn_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_exitbtn_pressed"]

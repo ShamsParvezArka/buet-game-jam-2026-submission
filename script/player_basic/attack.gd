@@ -7,7 +7,6 @@ extends State
 func enter() -> void:
 	if GlobalState.anime_sword_obtained:
 		player.flipbook.play("sword_attack")
-		player.audio_stream.play("Attack")
 		timer.start()
 		hit_collider.disabled = false
 	else:

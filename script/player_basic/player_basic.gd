@@ -1,7 +1,6 @@
 extends CharacterController
 
 @onready var hit_collider: CollisionShape2D = $HitArea/HitCollider
-@onready var audio_stream: Node2D = $AudioStream
 
 @export var move_speed_horizontal := 30
 @export var move_speed_vertical := 23
