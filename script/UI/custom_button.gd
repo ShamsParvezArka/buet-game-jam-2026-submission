@@ -27,4 +27,4 @@ func _on_focus_entered() -> void:
 
 func _on_focus_exited() -> void:
 	selector.visible = false
-	label.modulate = Color("cfcfcf")
+	label.modulate = Color("c2c2c284")
