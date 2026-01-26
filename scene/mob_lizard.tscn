@@ -15,67 +15,67 @@
 [ext_resource type="Script" uid="uid://cnopx1o2o33ib" path="res://script/damage_indicator.gd" id="12_rkwro"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3q26"]
-size = Vector2(13.375, 9.5)
+size = Vector2(10, 10.9375)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cykjh"]
 atlas = ExtResource("8_y4f8l")
-region = Rect2(44, 0, 22, 16)
+region = Rect2(44, 0, 20, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lblll"]
 atlas = ExtResource("8_y4f8l")
-region = Rect2(66, 0, 22, 16)
+region = Rect2(66, 0, 20, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ifktm"]
 atlas = ExtResource("8_y4f8l")
-region = Rect2(88, 0, 22, 16)
+region = Rect2(88, 0, 20, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rum3h"]
 atlas = ExtResource("8_y4f8l")
-region = Rect2(110, 0, 22, 16)
+region = Rect2(110, 0, 20, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1202"]
 atlas = ExtResource("8_y4f8l")
-region = Rect2(132, 0, 22, 16)
+region = Rect2(132, 0, 20, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i578o"]
 atlas = ExtResource("8_y4f8l")
-region = Rect2(154, 0, 22, 16)
+region = Rect2(154, 0, 20, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nvhuj"]
 atlas = ExtResource("8_y4f8l")
-region = Rect2(176, 0, 22, 16)
+region = Rect2(176, 0, 20, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o7586"]
 atlas = ExtResource("8_y4f8l")
-region = Rect2(198, 0, 22, 16)
+region = Rect2(198, 0, 20, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6yoae"]
 atlas = ExtResource("8_y4f8l")
-region = Rect2(220, 0, 22, 16)
+region = Rect2(220, 0, 20, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eq1uh"]
 atlas = ExtResource("8_y4f8l")
-region = Rect2(242, 0, 22, 16)
+region = Rect2(242, 0, 20, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3r236"]
 atlas = ExtResource("11_i3q26")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y4f8l"]
-atlas = ExtResource("10_y4f8l")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i3q26"]
-atlas = ExtResource("10_y4f8l")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rkwro"]
-atlas = ExtResource("10_y4f8l")
-region = Rect2(32, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_wekq1"]
 atlas = ExtResource("10_y4f8l")
-region = Rect2(48, 0, 16, 16)
+region = Rect2(0, 0, 13, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8xwn"]
+atlas = ExtResource("10_y4f8l")
+region = Rect2(16, 0, 13, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s38cd"]
+atlas = ExtResource("10_y4f8l")
+region = Rect2(32, 0, 13, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ex7m5"]
+atlas = ExtResource("10_y4f8l")
+region = Rect2(48, 0, 13, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p6ldg"]
 atlas = ExtResource("11_i3q26")
@@ -147,16 +147,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y4f8l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i3q26")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rkwro")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_wekq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8xwn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s38cd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ex7m5")
 }],
 "loop": true,
 "name": &"idle",
@@ -234,11 +234,10 @@ script = ExtResource("8_i578o")
 metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2(-2.6875, 2)
+position = Vector2(-1, 1.46875)
 shape = SubResource("RectangleShape2D_i3q26")
 
 [node name="Flipbook" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_rkwro")
 animation = &"idle"
 
@@ -248,7 +247,7 @@ collision_layer = 8
 collision_mask = 2
 
 [node name="Collider" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(0, 2)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_fmerv")
 
 [node name="Label" type="Label" parent="."]
