@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://dvyel64o3s4au"]
+[gd_scene load_steps=36 format=4 uid="uid://dvyel64o3s4au"]
 
 [ext_resource type="Texture2D" uid="uid://dwod412cnxdjd" path="res://asset/environment.png" id="1_8jxoh"]
 [ext_resource type="Texture2D" uid="uid://c206ra282hrcm" path="res://asset/player_icons.png" id="2_d4rgf"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://cqh7lpyho8r07" path="res://scene/mob_mooseman.tscn" id="11_xftar"]
 [ext_resource type="Script" uid="uid://betle50krjupc" path="res://script/player_basic/audio_stream.gd" id="12_l6kb6"]
 [ext_resource type="FontFile" uid="uid://7myvlg8x5agp" path="res://asset/font/PixelOperator8.ttf" id="12_ui1wm"]
+[ext_resource type="Texture2D" uid="uid://c77k4flaov58r" path="res://asset/keyboard-&-mouse_sheet_default.png" id="13_6uqiw"]
 [ext_resource type="PackedScene" uid="uid://btdemg6hbst6d" path="res://scene/mob_lizard.tscn" id="13_l02f5"]
 [ext_resource type="AudioStream" uid="uid://dkdcb238vu6v4" path="res://asset/audio/switch.wav" id="13_l6kb6"]
 [ext_resource type="PackedScene" uid="uid://bdbmclpwkldip" path="res://scene/wind_field.tscn" id="18_70st3"]
@@ -208,6 +209,87 @@ tile_size = Vector2i(8, 8)
 physics_layer_0/collision_layer = 1
 sources/2 = SubResource("TileSetAtlasSource_nvmt1")
 sources/0 = SubResource("TileSetAtlasSource_6axd3")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebune"]
+atlas = ExtResource("13_6uqiw")
+region = Rect2(960, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xldyi"]
+atlas = ExtResource("13_6uqiw")
+region = Rect2(896, 448, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u55ub"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebune")
+}],
+"loop": true,
+"name": &"k",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xldyi")
+}],
+"loop": false,
+"name": &"k_pressed",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6uqiw"]
+atlas = ExtResource("13_6uqiw")
+region = Rect2(640, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u55ub"]
+atlas = ExtResource("13_6uqiw")
+region = Rect2(576, 192, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hrywj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6uqiw")
+}],
+"loop": true,
+"name": &"t",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u55ub")
+}],
+"loop": false,
+"name": &"t_pressed",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrywj"]
+atlas = ExtResource("13_6uqiw")
+region = Rect2(64, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjs83"]
+atlas = ExtResource("13_6uqiw")
+region = Rect2(0, 384, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fn0r8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrywj")
+}],
+"loop": true,
+"name": &"l",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjs83")
+}],
+"loop": false,
+"name": &"l_pressed",
+"speed": 5.0
+}]
 
 [node name="World" type="Node2D"]
 
@@ -402,6 +484,58 @@ zoom = Vector2(4, 4)
 script = ExtResource("4_won01")
 basic = NodePath("../PlayerBasic")
 wizard = NodePath("../PlayerWizard")
+
+[node name="PlayerMechanicsBasic" type="Node2D" parent="CameraRig"]
+
+[node name="Attack" type="AnimatedSprite2D" parent="CameraRig/PlayerMechanicsBasic"]
+position = Vector2(72, 33)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_u55ub")
+animation = &"k"
+autoplay = "k"
+
+[node name="Instruction" type="Label" parent="CameraRig/PlayerMechanicsBasic/Attack"]
+offset_left = -190.0
+offset_top = -10.000156
+offset_right = -35.0
+offset_bottom = 20.999847
+theme_override_fonts/font = ExtResource("12_ui1wm")
+theme_override_font_sizes/font_size = 31
+text = "Attack"
+
+[node name="PlayerMechanicsWizard" type="Node2D" parent="CameraRig"]
+
+[node name="Teleport" type="AnimatedSprite2D" parent="CameraRig/PlayerMechanicsWizard"]
+position = Vector2(72, 33)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_hrywj")
+animation = &"t_pressed"
+autoplay = "t"
+
+[node name="Instruction" type="Label" parent="CameraRig/PlayerMechanicsWizard/Teleport"]
+offset_left = -239.99997
+offset_top = -9.999999
+offset_right = -35.99997
+offset_bottom = 35.0
+theme_override_fonts/font = ExtResource("12_ui1wm")
+theme_override_font_sizes/font_size = 32
+text = "Teleport"
+
+[node name="TargetSwitch" type="AnimatedSprite2D" parent="CameraRig/PlayerMechanicsWizard"]
+position = Vector2(72, 26)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_fn0r8")
+animation = &"l_pressed"
+autoplay = "l"
+
+[node name="Label" type="Label" parent="CameraRig/PlayerMechanicsWizard/TargetSwitch"]
+offset_left = -369.99997
+offset_top = -9.999999
+offset_right = -31.99997
+offset_bottom = 21.0
+theme_override_fonts/font = ExtResource("12_ui1wm")
+theme_override_font_sizes/font_size = 31
+text = "Change Target"
 
 [node name="PlayerBasicIcon" type="Sprite2D" parent="CameraRig"]
 position = Vector2(-70, 25)
