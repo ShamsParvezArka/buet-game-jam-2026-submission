@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://hveqhu5colj6"]
+[gd_scene load_steps=70 format=3 uid="uid://hveqhu5colj6"]
 
 [ext_resource type="Script" uid="uid://dfb0xqvguw6kp" path="res://script/player_basic/player_basic.gd" id="1_hyh25"]
 [ext_resource type="Texture2D" uid="uid://cevreuepibf4l" path="res://asset/player_basic/idle.png" id="2_8urdy"]
@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://cryhjisxl0gvx" path="res://asset/audio/climb_refined.wav" id="20_ldvja"]
 [ext_resource type="AudioStream" uid="uid://dvgm4exmi56vu" path="res://asset/audio/jump.wav" id="21_stpu3"]
 [ext_resource type="AudioStream" uid="uid://co4o0lkfcoiu6" path="res://asset/audio/pick_up.wav" id="22_ehgmk"]
+[ext_resource type="AudioStream" uid="uid://eqp5qrh4mfkr" path="res://asset/audio/death.wav" id="24_b1bor"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5p62h"]
 atlas = ExtResource("2_ujlph")
@@ -480,6 +481,10 @@ pitch_scale = 1.5
 [node name="PickUp" type="AudioStreamPlayer2D" parent="AudioStream"]
 stream = ExtResource("22_ehgmk")
 volume_db = -13.0
+
+[node name="Death" type="AudioStreamPlayer2D" parent="AudioStream"]
+stream = ExtResource("24_b1bor")
+volume_db = -5.0
 
 [connection signal="timeout" from="StateMachine/Jump/Timer" to="StateMachine/Jump" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]

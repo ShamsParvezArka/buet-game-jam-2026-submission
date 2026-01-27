@@ -38,6 +38,9 @@ func update_player_mechanics_sprite() -> void:
 func _process(delta: float) -> void:
 	self.position = self.position.lerp(GlobalState.current_selected_player.position, interpolation_factor * delta)
 	
+	if GlobalState.current_level > 2:
+		self.get_tree().change_scene_to_file("res://scene/ending.tscn")
+	
 	# NOTE(arka): Player toggle logic
 	if Input.is_action_just_pressed("player_switch"):
 		GlobalState.current_selected_player = basic if GlobalState.current_selected_player == wizard else wizard
