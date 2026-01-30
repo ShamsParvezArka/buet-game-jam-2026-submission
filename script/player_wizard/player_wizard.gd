@@ -15,6 +15,13 @@ var magic_color := Color(1.8, 1.8, 1.8, 0.588)
 @export var health := 20
 var is_hurt := false
 
+
+func _ready() -> void:
+	GlobalState.player_basic_apply_gravity = true
+	GlobalState.player_wizard = self
+	state_machine.init(initial_state)
+	
+
 func _physics_process(delta: float) -> void:
 	state_machine.update(delta)
 	if not self.is_on_floor() and GlobalState.player_basic_apply_gravity:

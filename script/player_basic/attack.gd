@@ -5,13 +5,13 @@ extends State
 
 
 func enter() -> void:
-	player.audio_stream.play("Attack")
 	if GlobalState.anime_sword_obtained:
+		player.audio_stream.play("Attack")
 		player.flipbook.play("sword_attack")
 		timer.start()
 		hit_collider.disabled = false
 	else:
-		state_machine.change_state(state_machine.previous_state)
+		state_machine.change_state(state_machine.get_node("Idle"))
 	
 	
 func update(delta: float) -> void:

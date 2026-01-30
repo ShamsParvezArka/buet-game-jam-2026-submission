@@ -494,6 +494,9 @@ height = 0.65
 [node name="WindGhust3" parent="OverWorld/Level2/Particle" instance=ExtResource("8_6iio1")]
 position = Vector2(923, 496)
 
+[node name="WindGhust3" parent="OverWorld/Level2/Particle/WindGhust3" instance=ExtResource("8_6iio1")]
+position = Vector2(-123, 4)
+
 [node name="WindGhust4" parent="OverWorld/Level2/Particle" instance=ExtResource("8_6iio1")]
 position = Vector2(1001, 528)
 
@@ -523,11 +526,11 @@ scale = Vector2(10, 1)
 position = Vector2(767, 554)
 scale = Vector2(7.92, 1)
 
-[node name="PlayerBasic" parent="." instance=ExtResource("2_nvmt1")]
-position = Vector2(160, 292)
-
 [node name="PlayerWizard" parent="." instance=ExtResource("3_mqdaa")]
-position = Vector2(312, 268)
+position = Vector2(252, 253)
+
+[node name="PlayerBasic" parent="." instance=ExtResource("2_nvmt1")]
+position = Vector2(226, 252)
 
 [node name="MobMosseman3" parent="." instance=ExtResource("11_xftar")]
 position = Vector2(435, 181)

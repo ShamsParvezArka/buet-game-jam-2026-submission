@@ -3,7 +3,7 @@ extends CharacterController
 @export var move_speed_horizontal := 23
 @export var move_speed_vertical := 0
 @export var gravity := 90
-@export var health:= 100
+@export var health:= 40
 @export var jump_force := -38
 
 @onready var label:Label = $Label
@@ -15,6 +15,10 @@ var is_hit := false
 var hit_direction := GlobalState.FacingDirection.LEFT
 var fall_back_distance := 23
 
+func _ready() -> void:
+	GlobalState.player_basic_apply_gravity = true
+	state_machine.init(initial_state)
+	
 
 func _physics_process(delta: float) -> void:
 	state_machine.update(delta)

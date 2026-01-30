@@ -17,6 +17,7 @@ func update(delta: float) -> void:
 	if Input.is_action_pressed("attack"):
 		state_machine.change_state(state_machine.get_node("Attack"))
 
+
 func _on_timer_timeout() -> void:
 	if player.is_on_floor():
 		if player.direction_horizontal != 0:

@@ -12,7 +12,7 @@ func enter() -> void:
 
 
 func _on_timer_timeout() -> void:
-	player.position = GlobalState.wizard_level_positon_container[GlobalState.current_level]
+	GlobalState.game_over = true
 	player.velocity = Vector2.ZERO
 	player.set_collision_mask_value(1, true)
 	state_machine.change_state(state_machine.get_node("Idle"))

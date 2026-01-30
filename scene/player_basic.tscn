@@ -423,7 +423,7 @@ metadata/_custom_type_script = "uid://drn4nb81k2l2b"
 
 [node name="Timer" type="Timer" parent="StateMachine/Death"]
 process_callback = 0
-wait_time = 2.0
+wait_time = 1.5
 one_shot = true
 
 [node name="KnockBack" type="Node" parent="StateMachine"]
