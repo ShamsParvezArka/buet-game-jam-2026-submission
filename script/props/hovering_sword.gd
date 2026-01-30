@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+@onready var sprite_2d_2: Sprite2D = $Sprite2D2
+
 var amplitude := 0.7
 var frequency := 0.6
 var initial_position_y := 0.0

@@ -20,10 +20,15 @@ func _ready() -> void:
 func update_player_mechanics_sprite() -> void:
 	#NOTE(arka): Player basic logic
 	if GlobalState.anime_sword_obtained:
+		player_mechanics_basic.get_node("Attack").modulate = Color.WHITE
 		if Input.is_action_pressed("attack"):
 			player_mechanics_basic.get_node("Attack").play("k_pressed")
 		elif Input.is_action_just_released("attack"):
 			player_mechanics_basic.get_node("Attack").play("k")
+	if Input.is_action_pressed("jump"):
+		player_mechanics_basic.get_node("Jump").play("space_pressed")
+	elif Input.is_action_just_released("jump"):
+		player_mechanics_basic.get_node("Jump").play("space")
 	
 	#NOTE(arka): Player wizard logic
 	if Input.is_action_pressed("teleport"):

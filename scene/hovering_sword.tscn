@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://etr28kadskst"]
+[gd_scene load_steps=6 format=3 uid="uid://etr28kadskst"]
 
 [ext_resource type="Texture2D" uid="uid://bttrnsu3bwia5" path="res://asset/props/sword.png" id="1_3vx1k"]
 [ext_resource type="Script" uid="uid://tqolgfks52hr" path="res://script/props/hovering_sword.gd" id="1_kwvlb"]
+[ext_resource type="Texture2D" uid="uid://c77k4flaov58r" path="res://asset/keyboard-&-mouse_sheet_default.png" id="3_o5ed1"]
+[ext_resource type="FontFile" uid="uid://7myvlg8x5agp" path="res://asset/font/PixelOperator8.ttf" id="4_6rsot"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kwvlb"]
 radius = 6.0827627
@@ -17,3 +19,20 @@ texture = ExtResource("1_3vx1k")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kwvlb")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-9.120001, -9.12)
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("3_o5ed1")
+hframes = 16
+vframes = 16
+frame = 150
+
+[node name="Label" type="Label" parent="."]
+offset_left = -6.12
+offset_top = -10.12
+offset_right = 157.88
+offset_bottom = 12.88
+theme_override_fonts/font = ExtResource("4_6rsot")
+theme_override_font_sizes/font_size = 3
+text = "to pickup"

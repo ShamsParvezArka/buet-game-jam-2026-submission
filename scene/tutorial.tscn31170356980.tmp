@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://dvyel64o3s4au"]
+[gd_scene load_steps=42 format=4 uid="uid://dvyel64o3s4au"]
 
 [ext_resource type="Texture2D" uid="uid://dwod412cnxdjd" path="res://asset/environment.png" id="1_8jxoh"]
 [ext_resource type="Texture2D" uid="uid://c206ra282hrcm" path="res://asset/player_icons.png" id="2_d4rgf"]
@@ -217,33 +217,6 @@ radius = 24.020824
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ebune"]
 radius = 26.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fn0r8"]
-atlas = ExtResource("13_6uqiw")
-region = Rect2(448, 192, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vwwap"]
-atlas = ExtResource("13_6uqiw")
-region = Rect2(384, 192, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_y7r4d"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fn0r8")
-}],
-"loop": true,
-"name": &"space",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vwwap")
-}],
-"loop": false,
-"name": &"space_pressed",
-"speed": 5.0
-}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ebune"]
 atlas = ExtResource("13_6uqiw")
@@ -599,25 +572,7 @@ wizard = NodePath("../PlayerWizard")
 [node name="PlayerMechanicsBasic" type="Node2D" parent="CameraRig"]
 position = Vector2(0, 4)
 
-[node name="Jump" type="AnimatedSprite2D" parent="CameraRig/PlayerMechanicsBasic"]
-position = Vector2(72.000015, 27)
-scale = Vector2(0.1, 0.1)
-sprite_frames = SubResource("SpriteFrames_y7r4d")
-animation = &"space"
-autoplay = "space"
-
-[node name="Instruction" type="Label" parent="CameraRig/PlayerMechanicsBasic/Jump"]
-offset_left = -151.99997
-offset_top = -12.999729
-offset_right = 3.0000305
-offset_bottom = 18.000275
-theme_override_fonts/font = ExtResource("12_ui1wm")
-theme_override_font_sizes/font_size = 31
-text = "Jump"
-metadata/_edit_use_anchors_ = true
-
 [node name="Attack" type="AnimatedSprite2D" parent="CameraRig/PlayerMechanicsBasic"]
-modulate = Color(1, 1, 1, 0.212)
 position = Vector2(72, 33)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_u55ub")
@@ -634,7 +589,6 @@ theme_override_font_sizes/font_size = 31
 text = "Attack"
 
 [node name="PlayerMechanicsWizard" type="Node2D" parent="CameraRig"]
-visible = false
 position = Vector2(0, 4)
 
 [node name="Teleport" type="AnimatedSprite2D" parent="CameraRig/PlayerMechanicsWizard"]
@@ -705,59 +659,40 @@ stream = ExtResource("13_l6kb6")
 volume_db = -20.0
 
 [node name="HowTo" type="Node2D" parent="."]
-modulate = Color(1, 1, 1, 0.212)
-position = Vector2(138, 278)
+position = Vector2(157, 292)
 script = ExtResource("24_u55ub")
 
-[node name="A" type="Sprite2D" parent="HowTo"]
-position = Vector2(-6.119993, 2.8800068)
-scale = Vector2(0.09, 0.09)
-texture = SubResource("CompressedTexture2D_xldyi")
-hframes = 16
-vframes = 16
-frame = 230
-
 [node name="D" type="Sprite2D" parent="HowTo"]
-position = Vector2(5.880006, 2.880005)
+position = Vector2(-10.000001, -16.000002)
 scale = Vector2(0.09, 0.09)
 texture = ExtResource("13_6uqiw")
 hframes = 16
 vframes = 16
 frame = 167
 
-[node name="W" type="Sprite2D" parent="HowTo"]
-position = Vector2(-0.11999321, -3.1199932)
-scale = Vector2(0.09, 0.09)
-texture = ExtResource("13_6uqiw")
-hframes = 16
-vframes = 16
-frame = 40
-
 [node name="S" type="Sprite2D" parent="HowTo"]
-position = Vector2(-0.11999512, 2.880005)
+position = Vector2(-16.000002, -16.000002)
 scale = Vector2(0.09, 0.09)
 texture = ExtResource("13_6uqiw")
 hframes = 16
 vframes = 16
 frame = 74
 
-[node name="ToMove" type="Label" parent="HowTo"]
-offset_left = 9.0
-offset_top = 2.0
-offset_right = 49.0
-offset_bottom = 25.0
-theme_override_fonts/font = ExtResource("12_ui1wm")
-theme_override_font_sizes/font_size = 3
-text = "to move"
+[node name="A" type="Sprite2D" parent="HowTo"]
+position = Vector2(-22.000002, -16)
+scale = Vector2(0.09, 0.09)
+texture = SubResource("CompressedTexture2D_xldyi")
+hframes = 16
+vframes = 16
+frame = 230
 
-[node name="Use" type="Label" parent="HowTo"]
-offset_left = -18.0
-offset_top = 2.0
-offset_right = 22.0
-offset_bottom = 25.0
-theme_override_fonts/font = ExtResource("12_ui1wm")
-theme_override_font_sizes/font_size = 3
-text = "use"
+[node name="W" type="Sprite2D" parent="HowTo"]
+position = Vector2(-16, -22)
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("13_6uqiw")
+hframes = 16
+vframes = 16
+frame = 40
 
 [connection signal="body_entered" from="TailEnder" to="TailEnder" method="_on_body_entered"]
 [connection signal="body_exited" from="TailEnder" to="TailEnder" method="_on_body_exited"]
